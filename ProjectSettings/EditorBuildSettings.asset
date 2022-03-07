@@ -4,5 +4,29 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/MainMenuScene.unity
+    guid: 4fc707aea64532a448808bd81f04e56e
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/HostGameScreen.unity
+    guid: 7ad4ac476a0db554e87f6c3438a2903e
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/JoinGameScene.unity
+    guid: fd4e4226271a6bf4f9a7624c0f0e65c5
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/MultiPlayerSelectRaceScreen.unity
+    guid: 28624d7809027bb4f98092690ba64e05
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/SelectVehicleScreen.unity
+    guid: fdf382fa5fba1bb4e8d14617af2acbf5
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/SettingsScene.unity
+    guid: 9a23b34ca88b02544a910ec59df6f12b
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/SinglePlayerSelectRaceScreen.unity
+    guid: d70236b81e84a5c4aa49616d951a4431
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/StartGameScene.unity
+    guid: 546cd847bf5a7234e9e37bb8f3173bc9
   m_configObjects: {}
