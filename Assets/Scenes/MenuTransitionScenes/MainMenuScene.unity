@@ -294,7 +294,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SinglePlayerSelectRaceScreen
+          m_StringArgument: SinglePlayerSelectRaceScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &493699344
@@ -863,7 +863,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SettingsScreen
+          m_StringArgument: SettingsScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1565015756
@@ -1062,7 +1062,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: MultiPlayerSelectRaceScreen
+          m_StringArgument: MultiPlayerSelectRaceScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1958843525
