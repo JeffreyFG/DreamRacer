@@ -16,11 +16,11 @@ public class FlickerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(counter==60)
+        if(counter==90)
         {
             startText.enabled = false;
         }
-        if(counter==120)
+        if(counter==180)
         {
             startText.enabled = true;
             counter = 0;
