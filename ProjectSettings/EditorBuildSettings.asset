@@ -7,6 +7,9 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MenuTransitionScenes/MainMenuScene.unity
+    guid: e14afe145bf1e8f4d983048ff862fcf5
+  - enabled: 1
+    path: Assets/Scenes/MenuTransitionScenes/MainMenuScene2.unity
     guid: 4fc707aea64532a448808bd81f04e56e
   - enabled: 1
     path: Assets/Scenes/MenuTransitionScenes/SinglePlayerSelectRaceScene.unity
@@ -22,11 +25,17 @@ EditorBuildSettings:
     guid: 7ad4ac476a0db554e87f6c3438a2903e
   - enabled: 1
     path: Assets/Scenes/MenuTransitionScenes/JoinGameScene.unity
+    guid: 7b1cb88b2eda4b944a9d39e3d0ec4dc8
+  - enabled: 0
+    path: Assets/Scenes/MenuTransitionScenes/JoinGameScene3.unity
     guid: fd4e4226271a6bf4f9a7624c0f0e65c5
   - enabled: 1
     path: Assets/Scenes/MenuTransitionScenes/SelectVehicleScene.unity
     guid: fdf382fa5fba1bb4e8d14617af2acbf5
   - enabled: 1
     path: Assets/Scenes/MenuTransitionScenes/StartGameScene.unity
+    guid: 65d1521400b54f345a027b06076da426
+  - enabled: 0
+    path: Assets/Scenes/MenuTransitionScenes/StartGameScene2.unity
     guid: 546cd847bf5a7234e9e37bb8f3173bc9
   m_configObjects: {}
