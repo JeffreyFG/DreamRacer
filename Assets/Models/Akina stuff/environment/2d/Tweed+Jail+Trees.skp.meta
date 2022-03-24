@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: 327c616f04e5aa34e9c82f594a736211
+timeCreated: 1522804849
+licenseType: Free
+SketchUpImporter:
+  generateBackFace: 0
+  mergeCoplanarFaces: 0
+  selectedNodes: 000000000100000002000000030000000400000005000000060000000700000008000000090000000a0000000b0000000c0000000d0000000e0000000f000000
+  assetHash:
+    serializedVersion: 2
+    Hash: 84b66c062a04426f9a870d41f9dad566
+  longitude: -77.3112224239236
+  latitude: 44.476177495717415
+  northCorrection: 358.38003670125005
+  fileUnit: 0
+  sketchUpImportData:
+    defaultCamera:
+      position: {x: -13.43977, y: 8.884264, z: -29.787622}
+      lookAt: {x: -5.6212654, y: -8.187499, z: 122.77024}
+      up: {x: 0.005684581, y: 0.9938131, z: 0.11091986}
+      fov: 30
+      aspectRatio: 0
+      orthoSize: 1
+      isPerspective: 1
+    scenes:
+    - camera:
+        position: {x: -13.43977, y: 8.884264, z: -29.787622}
+        lookAt: {x: -5.6212654, y: -8.187499, z: 122.77024}
+        up: {x: 0.005684581, y: 0.9938131, z: 0.11091986}
+        fov: 30
+        aspectRatio: 0
+        orthoSize: 1
+        isPerspective: 1
+      name: Upload Scene
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Deciduous Tree 2D
+    100002: Deciduous Tree 2D 1
+    100004: Deciduous Tree 2D 2
+    100006: Deciduous Tree 3D - 3 Plains
+    100008: Group 1
+    100010: Maple Tree 2D
+    100012: Maple Tree 2D 1
+    100014: Maple Tree 2D 2
+    100016: Maple Tree 3D - 3 Plains
+    100018: //RootNode
+    400000: Deciduous Tree 2D
+    400002: Deciduous Tree 2D 1
+    400004: Deciduous Tree 2D 2
+    400006: Deciduous Tree 3D - 3 Plains
+    400008: Group 1
+    400010: Maple Tree 2D
+    400012: Maple Tree 2D 1
+    400014: Maple Tree 2D 2
+    400016: Maple Tree 3D - 3 Plains
+    400018: //RootNode
+    2300000: Deciduous Tree 2D
+    2300002: Deciduous Tree 2D 1
+    2300004: Deciduous Tree 2D 2
+    2300006: Maple Tree 2D
+    2300008: Maple Tree 2D 1
+    2300010: Maple Tree 2D 2
+    3300000: Deciduous Tree 2D
+    3300002: Deciduous Tree 2D 1
+    3300004: Deciduous Tree 2D 2
+    3300006: Maple Tree 2D
+    3300008: Maple Tree 2D 1
+    3300010: Maple Tree 2D 2
+    4300000: Mesh Deciduous Tree 2D
+    4300002: Mesh Maple Tree 2D
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Deciduous_17
+    second: {fileID: 2100000, guid: 99bc0b430180da34d921c1d4ceaa0028, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Nagarjuna_sagar_vik_001
+    second: {fileID: 2100000, guid: 66b9b187471e43341981ecf311e3cb13, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 2
+    materialSearch: 0
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.0254
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
