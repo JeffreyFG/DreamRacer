@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 6426744344607649405}
   - component: {fileID: 6426744344607649402}
   m_Layer: 0
-  m_Name: Car Camera
+  m_Name: Cinemachine Cam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
