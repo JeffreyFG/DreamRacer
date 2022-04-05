@@ -2,21 +2,36 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class CarController : MonoBehaviour
 {
+
+
+public int speedMPH;
+public float topSpeed;
+public Rigidbody Car_rb;
+
+public string currentGear;
+public int gearNum;
+public List<int> Speeds;
+
+
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
     private float horizontalInput;
     private float verticalInput;
     private float currentSteerAngle;
-    private float currentbreakForce;
-    private bool isBreaking;
+    private float currentbrakeForce;
+    private bool isBraking;
 
     [SerializeField] private float motorForce;
-    [SerializeField] private float breakForce;
+    [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
+
+
+
 
     [SerializeField] private WheelCollider frontLeftWheelCollider;
     [SerializeField] private WheelCollider frontRightWheelCollider;
@@ -34,6 +49,8 @@ public class CarController : MonoBehaviour
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+        
+        GearShift();
     }
 
 
@@ -41,7 +58,8 @@ public class CarController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
         verticalInput = Input.GetAxis(VERTICAL);
-        isBreaking = Input.GetKey(KeyCode.Space);
+        isBraking = Input.GetKey(KeyCode.Space);
+        
     }
 
     private void HandleMotor()
@@ -50,16 +68,33 @@ public class CarController : MonoBehaviour
         rearRightWheelCollider.motorTorque = verticalInput * motorForce;
           frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        currentbreakForce = isBreaking ? breakForce : 0f;
-        ApplyBreaking();       
+        currentbrakeForce = isBraking ? brakeForce : 0f;
+        ApplyBraking();       
+    }
+    private void GearShift(){
+        //shift up
+        if(!isBraking){
+            if(Speeds[gearNum]<speedMPH&&gearNum!=Speeds.Count){
+                gearNum++;
+                currentGear=(gearNum+1).ToString();
+            }
+        }
+    //downshift
+    if(Speeds[gearNum]>speedMPH&&gearNum !=0){
+        gearNum--;
+        currentGear = gearNum.ToString();
     }
 
-    private void ApplyBreaking()
+if(Speeds.Last()<=speedMPH){
+    Car_rb.velocity = Vector3.ClampMagnitude(Car_rb.velocity,topSpeed);
+}
+    }
+    private void ApplyBraking()
     {
-        frontRightWheelCollider.brakeTorque = currentbreakForce;
-        frontLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearLeftWheelCollider.brakeTorque = currentbreakForce;
-        rearRightWheelCollider.brakeTorque = currentbreakForce;
+        frontRightWheelCollider.brakeTorque = currentbrakeForce;
+        frontLeftWheelCollider.brakeTorque = currentbrakeForce;
+        rearLeftWheelCollider.brakeTorque = currentbrakeForce;
+        rearRightWheelCollider.brakeTorque = currentbrakeForce;
     }
 
     private void HandleSteering()
@@ -80,8 +115,8 @@ public class CarController : MonoBehaviour
     private void UpdateSingleWheel(WheelCollider wheelCollider, Transform wheelTransform)
     {
         Vector3 pos;
-        Quaternion rot
-;       wheelCollider.GetWorldPose(out pos, out rot);
+        Quaternion rot;
+        wheelCollider.GetWorldPose(out pos, out rot);
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
