@@ -8,12 +8,13 @@ public class CarController : MonoBehaviour
 {
 
 
-public int speedMPH;
+public float speedMPH;
+
 public float topSpeed;
 public Rigidbody Car_rb;
 
 public string currentGear;
-public int gearNum;
+public int gearNum=1;
 public List<int> Speeds;
 
 
@@ -45,11 +46,17 @@ public List<int> Speeds;
 
     private void FixedUpdate()
     {
+        speedMPH=Car_rb.velocity.magnitude*3.6f;
+          
+        if(speedMPH==30){
+            Debug.Log("FUCKER");
+        }
+        Debug.Log(speedMPH);
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
-        
+
         GearShift();
     }
 
@@ -73,15 +80,18 @@ public List<int> Speeds;
     }
     private void GearShift(){
         //shift up
+      
         if(!isBraking){
             if(Speeds[gearNum]<speedMPH&&gearNum!=Speeds.Count){
                 gearNum++;
+                Debug.Log("Gear Shift!");
                 currentGear=(gearNum+1).ToString();
             }
         }
     //downshift
     if(Speeds[gearNum]>speedMPH&&gearNum !=0){
         gearNum--;
+        Debug.Log("down shift!!");
         currentGear = gearNum.ToString();
     }
 
