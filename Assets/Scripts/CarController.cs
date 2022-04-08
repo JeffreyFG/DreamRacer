@@ -4,18 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
+    [System.Serializable] public struct EngineSpecs {
+  //more specs to be added later
+    public float redline;
+}
 public class CarController : MonoBehaviour
 {
 
 
-public float speedMPH;
 
-public float topSpeed;
-public Rigidbody Car_rb;
-
-public string currentGear;
-public int gearNum=1;
-public List<int> Speeds;
+  
+    public EngineSpecs EngineSpecs;
+    public float currentRPM;
+    public float speedMPH;
+    public Rigidbody RB;
+    public int minRPM;
+    public int currentGear=1;
+    public float[] gearRatio;
 
 
     private const string HORIZONTAL = "Horizontal";
@@ -27,10 +33,12 @@ public List<int> Speeds;
     private float currentbrakeForce;
     private bool isBraking;
 
+
+
+
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
-
 
 
 
@@ -40,27 +48,32 @@ public List<int> Speeds;
     [SerializeField] private WheelCollider rearRightWheelCollider;
 
     [SerializeField] private Transform frontLeftWheelTransform;
-    [SerializeField] private Transform frontRightWheeTransform;
+    [SerializeField] private Transform frontRightWheelTransform;
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
     private void FixedUpdate()
     {
-        speedMPH=Car_rb.velocity.magnitude*3.6f;
+        speedMPH=RB.velocity.magnitude*3.6f;
           
         if(speedMPH==30){
-            Debug.Log("FUCKER");
         }
-        Debug.Log(speedMPH);
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+        HandleEngine();
 
         GearShift();
     }
 
-
+private void HandleEngine(){
+     //MAKE SURE the number in GEARRATIO[number] is equal to the number of elements in UNITY EDITOR OTHERWISE GEARBOX WONT WORK!!!!!! for example gearRatio[5], editor must have elements 0-5!!!!
+     currentRPM=(RB.velocity.magnitude*600/(0.29f*2*Mathf.PI))*gearRatio[5]*gearRatio[currentGear];
+    
+        Debug.Log(currentRPM+" RPM");
+       
+}
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -71,34 +84,30 @@ public List<int> Speeds;
 
     private void HandleMotor()
     {
+       
         rearLeftWheelCollider.motorTorque = verticalInput * motorForce;
         rearRightWheelCollider.motorTorque = verticalInput * motorForce;
           frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
         currentbrakeForce = isBraking ? brakeForce : 0f;
         ApplyBraking();       
+        
     }
     private void GearShift(){
-        //shift up
-      
-        if(!isBraking){
-            if(Speeds[gearNum]<speedMPH&&gearNum!=Speeds.Count){
-                gearNum++;
-                Debug.Log("Gear Shift!");
-                currentGear=(gearNum+1).ToString();
-            }
+        if(currentGear==gearRatio.Length&&currentRPM==EngineSpecs.redline){
+            motorForce=0f;
         }
-    //downshift
-    if(Speeds[gearNum]>speedMPH&&gearNum !=0){
-        gearNum--;
-        Debug.Log("down shift!!");
-        currentGear = gearNum.ToString();
-    }
+        if(verticalInput==1&&currentRPM>EngineSpecs.redline){
+            currentGear++;
 
-if(Speeds.Last()<=speedMPH){
-    Car_rb.velocity = Vector3.ClampMagnitude(Car_rb.velocity,topSpeed);
-}
+        }
+          if(verticalInput==-1&&currentGear>0&&currentRPM<minRPM){
+            currentGear--;
+        }
+        speedMPH = GetComponent<Rigidbody>().velocity.magnitude*3.6f;
+        Debug.Log(speedMPH);
     }
+     
     private void ApplyBraking()
     {
         frontRightWheelCollider.brakeTorque = currentbrakeForce;
@@ -115,9 +124,10 @@ if(Speeds.Last()<=speedMPH){
     }
 
     private void UpdateWheels()
+
     {
         UpdateSingleWheel(frontLeftWheelCollider, frontLeftWheelTransform);
-        UpdateSingleWheel(frontRightWheelCollider, frontRightWheeTransform);
+        UpdateSingleWheel(frontRightWheelCollider, frontRightWheelTransform);
         UpdateSingleWheel(rearRightWheelCollider, rearRightWheelTransform);
         UpdateSingleWheel(rearLeftWheelCollider, rearLeftWheelTransform);
     }
