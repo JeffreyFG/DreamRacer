@@ -13,7 +13,7 @@ public class CarController : MonoBehaviour
 {
 
 
-
+    public GameManager manager;
   
     public EngineSpecs EngineSpecs;
     public float currentRPM;
@@ -22,8 +22,6 @@ public class CarController : MonoBehaviour
     public int minRPM;
     public int currentGear=1;
     public float[] gearRatio;
-
-
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
 
@@ -69,11 +67,15 @@ public class CarController : MonoBehaviour
 
 private void HandleEngine(){
      //MAKE SURE the number in GEARRATIO[number] is equal to the number of elements in UNITY EDITOR OTHERWISE GEARBOX WONT WORK!!!!!! for example gearRatio[5], editor must have elements 0-5!!!!
-     currentRPM=(RB.velocity.magnitude*600/(0.29f*2*Mathf.PI))*gearRatio[5]*gearRatio[currentGear];
+        currentRPM=(RB.velocity.magnitude*600/(0.29f*2*Mathf.PI))*gearRatio[5]*gearRatio[currentGear];
     
-        Debug.Log(currentRPM+" RPM");
+        //Debug.Log(currentRPM+" RPM");
        
 }
+    private void Update() {
+        //sends location update to server 
+        manager.StartInteraction();   
+    }
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
@@ -105,7 +107,7 @@ private void HandleEngine(){
             currentGear--;
         }
         speedMPH = GetComponent<Rigidbody>().velocity.magnitude*3.6f;
-        Debug.Log(speedMPH);
+        //Debug.Log(speedMPH);
     }
      
     private void ApplyBraking()
