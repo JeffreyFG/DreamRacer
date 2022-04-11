@@ -5,8 +5,9 @@ using UnityEngine;
 public class ResponseInteractEventArgs : ExtendedEventArgs
 {
 	public int user_id { get; set; } // The user_id of whom who sent the request
-	public int piece_idx { get; set; } // The index of the piece that is initiating the interaction. Belongs to player with id user_id
-	public int target_idx { get; set; } // The index of the piece that is being interacted with. Belongs to the opponent of the player with id user_id
+	public string x { get; set; } // X location
+	public string y { get; set; } // y location
+	public string z { get; set; } // z location
 
 	public ResponseInteractEventArgs()
 	{
@@ -17,8 +18,9 @@ public class ResponseInteractEventArgs : ExtendedEventArgs
 public class ResponseInteract : NetworkResponse
 {
 	private int user_id;
-	private int piece_idx;
-	private int target_idx;
+	private string x;
+	private string y;
+	private string z;
 
 	public ResponseInteract()
 	{
@@ -27,8 +29,9 @@ public class ResponseInteract : NetworkResponse
 	public override void parse()
 	{
 		user_id = DataReader.ReadInt(dataStream);
-		piece_idx = DataReader.ReadInt(dataStream);
-		target_idx = DataReader.ReadInt(dataStream);
+		x = DataReader.ReadString(dataStream);
+		y = DataReader.ReadString(dataStream);
+		z = DataReader.ReadString(dataStream);
 	}
 
 	public override ExtendedEventArgs process()
@@ -36,8 +39,9 @@ public class ResponseInteract : NetworkResponse
 		ResponseInteractEventArgs args = new ResponseInteractEventArgs
 		{
 			user_id = user_id,
-			piece_idx = piece_idx,
-			target_idx = target_idx
+			x = x,
+			y = y,
+			z =  z
 		};
 
 		return args;

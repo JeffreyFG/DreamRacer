@@ -61,7 +61,7 @@ public class CarController : MonoBehaviour
         HandleSteering();
         UpdateWheels();
         HandleEngine();
-
+        manager.StartInteraction();   
         GearShift();
     }
 
@@ -74,7 +74,7 @@ private void HandleEngine(){
 }
     private void Update() {
         //sends location update to server 
-        manager.StartInteraction();   
+        
     }
     private void GetInput()
     {

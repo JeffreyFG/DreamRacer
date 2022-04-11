@@ -107,6 +107,18 @@ public class NetworkManager : MonoBehaviour
 		return false;
 	}
 
+	public bool SendItemRequest(Vector3 location)
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestItem request = new RequestItem();
+			request.send(location.x, location.y, location.z);
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
 	public IEnumerator RequestHeartbeat(float time)
 	{
 		yield return new WaitForSeconds(time);

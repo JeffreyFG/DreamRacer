@@ -25,10 +25,10 @@ public class MessageQueue : MonoBehaviour {
 			ExtendedEventArgs args = msgQueue.Dequeue();
 			if (callbackList.ContainsKey(args.event_id)) {
 				callbackList[args.event_id](args);
-				Debug.Log("Processed Event No. " + args.event_id + " [" + args.GetType() + "]");
-				Debug.Log("Processed Event No. " + args.event_id + " [" + args.ToString() + "]");
+				// Debug.Log("Processed Event No. " + args.event_id + " [" + args.GetType() + "]");
+				// Debug.Log("Processed Event No. " + args.event_id + " [" + args.ToString() + "]");
 			} else {
-				Debug.Log("Missing Event No. " + args.event_id + " [" + args.GetType() + "]");
+				// Debug.Log("Missing Event No. " + args.event_id + " [" + args.GetType() + "]");
 			}
 		}
 	}

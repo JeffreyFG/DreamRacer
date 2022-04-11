@@ -47,7 +47,6 @@ public class GamePacket {
 	}
 	
 	public byte[] getBytes() {
-		Debug.Log(buffer.size());
 		return buffer.toByteArray();
 	}
 }

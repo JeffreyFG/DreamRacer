@@ -84,7 +84,7 @@ public class ConnectionManager : MonoBehaviour
 			return;
 		}
 		GamePacket packet = request.packet;
-		print(packet.getBytes());
+	
 		byte[] bytes = packet.getBytes();
 		theStream.Write(bytes, 0, bytes.Length);
 	
