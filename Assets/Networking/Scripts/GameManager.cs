@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 	private bool canInteract = false;
 	
 	private bool useNetwork;
-	private NetworkManager networkManager;
+	public NetworkManager networkManager;
 
 	void Start()
 	{

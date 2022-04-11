@@ -31,8 +31,6 @@ public class NetworkManager : MonoBehaviour
 			Player player1 = new Player(1, "player 1", new Color(0.9f, 0.1f, 0.1f), true);
 			Player player2 = new Player(2, "player 2", new Color(0.2f, 0.2f, 1.0f), true);
 			gameManager.Init(player1, player2);
-
-			
 		}
 	}
 
