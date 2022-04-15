@@ -53,31 +53,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
-
-    void Start(){
-        EngineSetup();
-    }
-
-    private void EngineSetup(){
-    engineTorque[0,0] = EngineSpecs.idle;
-    engineTorque[1,0] = EngineSpecs.lowerPowerBand;
-    engineTorque[2,0] = EngineSpecs.upperPowerBand;
-    engineTorque[3,0] = EngineSpecs.redline;
-
-    engineTorque[0,1] = powerSetup(EngineSpecs.idle);
-    engineTorque[1,1] = powerSetup(EngineSpecs.lowerPowerBand);
-    engineTorque[2,1] = powerSetup(EngineSpecs.upperPowerBand);
-    engineTorque[3,1] = powerSetup(EngineSpecs.redline);
-
-    }
-    
-    private float powerSetup(float power){
-        //power * constant / rpm
-        return (power*7000)/currentRPM;
-    }
-    
-
-
     private void FixedUpdate()
     {
         
