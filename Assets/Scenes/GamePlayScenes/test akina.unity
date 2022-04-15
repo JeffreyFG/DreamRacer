@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,7 +133,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6426744344030295724, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
@@ -190,15 +189,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03196333
+      value: 0.031963326
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000021496989
+      value: -0.000000002149699
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.8746654e-11
+      value: 6.8746654e-11
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -253,14 +252,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
 --- !u!1001 &242699270
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4948556374962969887, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
@@ -311,15 +308,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: RB
+      value: 
+      objectReference: {fileID: 242699272}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: minRPM
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.idle
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.redline
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: frontRightWheelTransform
+      value: 
+      objectReference: {fileID: 242699271}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.lowerPowerBand
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.upperPowerBand
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.gearShiftTimeSeconds
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+--- !u!4 &242699271 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4950239143513796197, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+  m_PrefabInstance: {fileID: 242699270}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &242699272 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 4952656224100428859, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+  m_PrefabInstance: {fileID: 242699270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1860321807
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1656892366913190, guid: 3f100f0473307584e947d73f35653649, type: 3}
@@ -1114,7 +1151,6 @@ PrefabInstance:
     - {fileID: 114089138759850492, guid: 3f100f0473307584e947d73f35653649, type: 3}
     - {fileID: 114408363214665040, guid: 3f100f0473307584e947d73f35653649, type: 3}
     - {fileID: 114020876942583782, guid: 3f100f0473307584e947d73f35653649, type: 3}
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f100f0473307584e947d73f35653649, type: 3}
 --- !u!4 &2138301510 stripped
 Transform:
