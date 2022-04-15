@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &85072990 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4950239143513796197, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+  m_PrefabInstance: {fileID: 242699270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &121992370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4948556374962969887, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
@@ -133,7 +138,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6426744344030295724, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
@@ -190,15 +194,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.03196333
+      value: 0.031963326
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.0000000021496989
+      value: -0.000000002149699
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -6.8746654e-11
+      value: 6.8746654e-11
       objectReference: {fileID: 0}
     - target: {fileID: 6426744344607649405, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -253,14 +257,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fcb1cd4846bb463499d3fe28ee5c8dc0, type: 3}
 --- !u!1001 &242699270
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4948556374962969887, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
@@ -307,19 +309,86 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4951844588061942393, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: m_Name
+      value: Front Right Wheel
+      objectReference: {fileID: 0}
     - target: {fileID: 4952656224100428853, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
       propertyPath: m_Name
       value: Car
       objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: RB
+      value: 
+      objectReference: {fileID: 271563458}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: minRPM
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: topSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: motorForce
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: maxMotorForce
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.idle
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: EngineSpecs.redline
+      value: 4500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.data[0]
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.data[1]
+      value: 2.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.data[2]
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.data[3]
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.data[4]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: gearRatio.Array.data[5]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952656224100428858, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+      propertyPath: frontRightWheelTransform
+      value: 
+      objectReference: {fileID: 85072990}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+--- !u!54 &271563458 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 4952656224100428859, guid: 0a50ca87b59a1b2419b2a2430877886f, type: 3}
+  m_PrefabInstance: {fileID: 242699270}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1860321807
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1656892366913190, guid: 3f100f0473307584e947d73f35653649, type: 3}
@@ -1114,7 +1183,6 @@ PrefabInstance:
     - {fileID: 114089138759850492, guid: 3f100f0473307584e947d73f35653649, type: 3}
     - {fileID: 114408363214665040, guid: 3f100f0473307584e947d73f35653649, type: 3}
     - {fileID: 114020876942583782, guid: 3f100f0473307584e947d73f35653649, type: 3}
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f100f0473307584e947d73f35653649, type: 3}
 --- !u!4 &2138301510 stripped
 Transform:

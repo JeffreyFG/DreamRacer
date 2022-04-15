@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+using System.Timers;
+using System.Threading.Tasks;
 
     [System.Serializable] public struct EngineSpecs {
   //more specs to be added later
+    public float idle;
+    public float lowerPowerBand;
+    public float upperPowerBand;
     public float redline;
+    public double gearShiftTimeSeconds;
 }
 public class CarController : MonoBehaviour
 {
@@ -19,7 +24,6 @@ public class CarController : MonoBehaviour
     public float currentRPM;
     public float speedMPH;
     public Rigidbody RB;
-    public int minRPM;
     public int currentGear=1;
     public float[] gearRatio;
     private const string HORIZONTAL = "Horizontal";
@@ -30,14 +34,13 @@ public class CarController : MonoBehaviour
     private float currentSteerAngle;
     private float currentbrakeForce;
     private bool isBraking;
-
-
-
-
+    private bool isShifting;
+   
+    [SerializeField] private float topSpeed;
+    [SerializeField] private float maxMotorForce;
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
-
 
 
     [SerializeField] private WheelCollider frontLeftWheelCollider;
@@ -50,28 +53,73 @@ public class CarController : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
+    void Start(){
+        EngineSpecs.lowerPowerBand= (EngineSpecs.redline+EngineSpecs.idle)/3;
+        EngineSpecs.upperPowerBand = (EngineSpecs.redline+EngineSpecs.idle)/2;
+    }
     private void FixedUpdate()
     {
-        speedMPH=RB.velocity.magnitude*3.6f;
-          
-        if(speedMPH==30){
+        
+        if(speedMPH<topSpeed-80){
+            handleMotorForce(1f);
         }
+        if(speedMPH>topSpeed-80){
+            handleMotorForce(.8f);
+        }
+          if(speedMPH>topSpeed-40){
+            handleMotorForce(.4f);
+        }
+         if(speedMPH>topSpeed-10){
+            handleMotorForce(.2f);
+        }
+         if(speedMPH>=topSpeed){
+            handleMotorForce(0f);
+        }
+
         GetInput();
         HandleMotor();
         HandleSteering();
         UpdateWheels();
+       // GearShift();
+     
         HandleEngine();
+        
         manager.StartInteraction();   
-        GearShift();
-    }
 
+    }
+private void handleMotorForce(float multiplier){
+
+    if(currentRPM<EngineSpecs.lowerPowerBand){
+        motorForce=maxMotorForce*.25f*multiplier;
+    }
+    if(currentRPM>EngineSpecs.lowerPowerBand&&currentRPM<EngineSpecs.upperPowerBand){
+        motorForce=maxMotorForce*multiplier;
+    }
+    if(currentRPM>EngineSpecs.upperPowerBand&&currentRPM<EngineSpecs.redline){
+        motorForce=maxMotorForce*.75f*multiplier;
+    }
+}
 private void HandleEngine(){
      //MAKE SURE the number in GEARRATIO[number] is equal to the number of elements in UNITY EDITOR OTHERWISE GEARBOX WONT WORK!!!!!! for example gearRatio[5], editor must have elements 0-5!!!!
+if(currentRPM<EngineSpecs.idle){
+    currentRPM=EngineSpecs.idle;
+}else{
+if(currentRPM<EngineSpecs.redline){
         currentRPM=(RB.velocity.magnitude*600/(0.29f*2*Mathf.PI))*gearRatio[5]*gearRatio[currentGear];
-    
+       speedMPH=RB.velocity.magnitude*3.6f;
+    }
+if(currentRPM>=EngineSpecs.redline){
+    currentGear++;
+    currentRPM=1600;
+}
+
+if(currentRPM<=EngineSpecs.idle&&currentGear>1){
+    currentGear--;
+}
         //Debug.Log(currentRPM+" RPM");
        
-}
+
+}}
     private void Update() {
         //sends location update to server 
         
@@ -95,20 +143,25 @@ private void HandleEngine(){
         ApplyBraking();       
         
     }
-    private void GearShift(){
-        if(currentGear==gearRatio.Length&&currentRPM==EngineSpecs.redline){
-            motorForce=0f;
-        }
-        if(verticalInput==1&&currentRPM>EngineSpecs.redline){
-            currentGear++;
+    // private void GearShift(){
+    //     if(verticalInput==1&&currentRPM>EngineSpecs.redline &&isShifting==true){
+    //     //     verticalInput=0;
+    //     //    Debug.Log("Before Delay");
+    //     //    await Task.Delay((int)(EngineSpecs.gearShiftTimeSeconds*1000));
+    //     //    motorForce=1000f;
+    //     //     currentGear++;
+    //     //    Debug.Log("After Delay");
+    //     //     verticalInput=1;
+    //     currentGear++;
+    //     isShifting=false;
 
-        }
-          if(verticalInput==-1&&currentGear>0&&currentRPM<minRPM){
-            currentGear--;
-        }
-        speedMPH = GetComponent<Rigidbody>().velocity.magnitude*3.6f;
-        //Debug.Log(speedMPH);
-    }
+    //     }
+    //       if(currentGear>1&&currentRPM<minRPM){
+    //         currentGear--;
+    //     }
+    //     speedMPH = GetComponent<Rigidbody>().velocity.magnitude*3.6f;
+    //     //Debug.Log(speedMPH);
+    // }
      
     private void ApplyBraking()
     {
