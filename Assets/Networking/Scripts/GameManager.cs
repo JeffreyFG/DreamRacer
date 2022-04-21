@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 	public GameObject items1;
 	public GameObject items2;
 
-	private int currentPlayer = 1;
+	public static int currentPlayer = 1;
 	private bool canInteract = false;
 	
 	private bool useNetwork;
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 	public GameObject Car2RedBody;
     public GameObject Car2BlueBody;
 	// Select vehicle 2 body options end
-
+	public AudioSource LevelMusic;
 	void Start()
 	{
 		// StartCoroutine (CountStart ());
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds (1);
 		CountDown.SetActive (false);
 		GoAudio.Play ();
+		LevelMusic.Play();
 		LapTimer.SetActive (true);
 		
 		car1.GetComponent<CarController>().enabled = true;
@@ -149,6 +150,7 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds (1);
 		CountDown.SetActive (false);
 		GoAudio.Play ();
+		LevelMusic.Play();
 		LapTimer.SetActive (true);
 
 		car2.GetComponent<CarController>().enabled = true;

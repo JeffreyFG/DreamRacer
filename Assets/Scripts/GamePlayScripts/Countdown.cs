@@ -1,3 +1,4 @@
+// Not used anymore
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class Countdown : MonoBehaviour {
 	public AudioSource GoAudio;
 	public GameObject LapTimer;
 	public GameObject CarControls;
+	public AudioSource LevelMusic;
 
 	void Start () {
 		StartCoroutine (CountStart ());		
@@ -34,6 +36,7 @@ public class Countdown : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 		CountDown.SetActive (false);
 		GoAudio.Play ();
+		LevelMusic.Play();
 		LapTimer.SetActive (true);
 		CarControls.SetActive (true);
 	}
