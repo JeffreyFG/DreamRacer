@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
 	public GameObject car2;
 
 	public GameObject controls2;
+	public GameObject car3;
+
+	public GameObject controls3;
 
 	public GameObject items1;
 	public GameObject items2;
@@ -59,7 +62,7 @@ public class GameManager : MonoBehaviour
 			camera2.SetActive (false);camera1.SetActive (true);;
 		}
 		else{
-			car = car2;
+			car = car3;
 			StartCoroutine (CountStart2 ());	
 			camera2.SetActive (true);camera1.SetActive (false);
 		}
@@ -119,12 +122,12 @@ public class GameManager : MonoBehaviour
 		GoAudio.Play ();
 		LapTimer.SetActive (true);
 
-		car2.GetComponent<CarController>().enabled = true;
+		car3.GetComponent<CarController>().enabled = true;
 		items2.GetComponent<createItem>().isEnabled = true;
 		car1.GetComponent<CarController>().enabled = false;
 		items1.GetComponent<createItem>().isEnabled = false;
 		controls1.SetActive(false);
-		controls2.SetActive(true);
+		controls3.SetActive(true);
 
 		
 	}
