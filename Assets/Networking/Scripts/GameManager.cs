@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -22,8 +24,17 @@ public class GameManager : MonoBehaviour
 	private bool useNetwork;
 	public NetworkManager networkManager;
 
+	public GameObject CountDown;
+	public AudioSource GetReady;
+	public AudioSource GoAudio;
+	public GameObject LapTimer;
+
+	public GameObject camera1;
+	public GameObject camera2;
+
 	void Start()
 	{
+		// StartCoroutine (CountStart ());
 		DontDestroyOnLoad(gameObject);
 		
 		MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
@@ -33,6 +44,7 @@ public class GameManager : MonoBehaviour
 		msgQueue.AddCallback(Constants.SMSG_ITEM, OnResponseItem);
 		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
 		msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
+			
 		
 	}
 
@@ -43,33 +55,78 @@ public class GameManager : MonoBehaviour
 
 		if (currentPlayer == 1){
 			car = car1;
-			ActivatePlayer1();
+			StartCoroutine (CountStart1 ());	
+			camera2.SetActive (false);camera1.SetActive (true);;
 		}
 		else{
 			car = car2;
-			ActivatePlayer2();
+			StartCoroutine (CountStart2 ());	
+			camera2.SetActive (true);camera1.SetActive (false);
 		}
 		
 	}
 
-	private void ActivatePlayer1(){
+	IEnumerator CountStart1 () {
+		
+
+		yield return new WaitForSeconds (0.5f);
+		CountDown.GetComponent<Text> ().text = "3";
+		GetReady.Play ();
+		CountDown.SetActive (true);
+		yield return new WaitForSeconds (1);
+		CountDown.SetActive (false);
+		CountDown.GetComponent<Text> ().text = "2";
+		GetReady.Play ();
+		CountDown.SetActive (true);
+		yield return new WaitForSeconds (1);
+		CountDown.SetActive (false);
+		CountDown.GetComponent<Text> ().text = "1";
+		GetReady.Play ();
+		CountDown.SetActive (true);
+		yield return new WaitForSeconds (1);
+		CountDown.SetActive (false);
+		GoAudio.Play ();
+		LapTimer.SetActive (true);
+		
 		car1.GetComponent<CarController>().enabled = true;
 		items1.GetComponent<createItem>().isEnabled = true;
-		controls1.SetActive(true);
-
 		car2.GetComponent<CarController>().enabled = false;
 		items2.GetComponent<createItem>().isEnabled = false;
 		controls2.SetActive(false);
-	}
+		controls1.SetActive(true);
 
-	private void ActivatePlayer2(){
+
+
+	}
+	IEnumerator CountStart2 () {
+		
+		yield return new WaitForSeconds (0.5f);
+		CountDown.GetComponent<Text> ().text = "3";
+		GetReady.Play ();
+		CountDown.SetActive (true);
+		yield return new WaitForSeconds (1);
+		CountDown.SetActive (false);
+		CountDown.GetComponent<Text> ().text = "2";
+		GetReady.Play ();
+		CountDown.SetActive (true);
+		yield return new WaitForSeconds (1);
+		CountDown.SetActive (false);
+		CountDown.GetComponent<Text> ().text = "1";
+		GetReady.Play ();
+		CountDown.SetActive (true);
+		yield return new WaitForSeconds (1);
+		CountDown.SetActive (false);
+		GoAudio.Play ();
+		LapTimer.SetActive (true);
+
 		car2.GetComponent<CarController>().enabled = true;
 		items2.GetComponent<createItem>().isEnabled = true;
-		controls2.SetActive(true);
-
 		car1.GetComponent<CarController>().enabled = false;
 		items1.GetComponent<createItem>().isEnabled = false;
 		controls1.SetActive(false);
+		controls2.SetActive(true);
+
+		
 	}
 
 	public Player GetCurrentPlayer()
