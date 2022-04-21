@@ -21,7 +21,6 @@ public class RaceFinish : MonoBehaviour
 
     public AudioSource FinishMusic;
 
-    // private int ourPlayer = GameManager.currentPlayer;
 
     void OnTriggerEnter() {
         if(GameManager.currentPlayer == 1)

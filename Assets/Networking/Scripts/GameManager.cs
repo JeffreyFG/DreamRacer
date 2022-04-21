@@ -36,12 +36,10 @@ public class GameManager : MonoBehaviour
 	public GameObject Car1RedBody;
     public GameObject Car1BlueBody;
     public int CarImport = 2; //Default blue car
-	// Select vehicle 1 body options end
 
 	// Select vehicle 2 body options start
 	public GameObject Car2RedBody;
     public GameObject Car2BlueBody;
-	// Select vehicle 2 body options end
 	public AudioSource LevelMusic;
 	void Start()
 	{
@@ -58,6 +56,14 @@ public class GameManager : MonoBehaviour
 			
 		
 	}
+
+	/* TODO: Create protocol that sends finish time to server, and server checks if it already contains a
+		finish time. If it doesn't then this player has won 
+	public void OnResponseWinner(){
+
+	}
+	*/
+
 
 	public void OnResponseJoin(ExtendedEventArgs eventArgs)
 	{
@@ -117,10 +123,8 @@ public class GameManager : MonoBehaviour
 		items2.GetComponent<createItem>().isEnabled = false;
 		controls2.SetActive(false);
 		controls1.SetActive(true);
-
-
-
 	}
+
 	IEnumerator CountStart2 () {
 		CarImport = GlobalCar.CarType;
         if (CarImport == 1)
@@ -158,9 +162,7 @@ public class GameManager : MonoBehaviour
 		car1.GetComponent<CarController>().enabled = false;
 		items1.GetComponent<createItem>().isEnabled = false;
 		controls1.SetActive(false);
-		controls2.SetActive(true);
-
-		
+		controls2.SetActive(true);	
 	}
 
 	public Player GetCurrentPlayer()
