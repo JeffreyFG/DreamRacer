@@ -294,7 +294,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SelectVehicleScene
+          m_StringArgument: ChooseVehicleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &152482816
@@ -586,7 +586,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SelectVehicleScene
+          m_StringArgument: ChooseVehicleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &958622036
@@ -719,7 +719,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SelectVehicleScene
+          m_StringArgument: ChooseVehicleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1059409758
@@ -1201,7 +1201,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: SelectVehicleScene
+          m_StringArgument: ChooseVehicleScene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1571172223
