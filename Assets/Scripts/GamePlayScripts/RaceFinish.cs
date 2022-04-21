@@ -21,10 +21,10 @@ public class RaceFinish : MonoBehaviour
 
     public AudioSource FinishMusic;
 
-    private int ourPlayer = GameManager.currentPlayer;
+    // private int ourPlayer = GameManager.currentPlayer;
 
     void OnTriggerEnter() {
-        if(ourPlayer == 1)
+        if(GameManager.currentPlayer == 1)
         {
             MyCar1.SetActive (false);
             CompleteTrig.SetActive(false);
@@ -38,7 +38,7 @@ public class RaceFinish : MonoBehaviour
             FinishMusic.Play();
             
         }
-        if(ourPlayer == 2)
+        if(GameManager.currentPlayer == 2)
         {
             MyCar2.SetActive (false);
             CompleteTrig.SetActive(false);

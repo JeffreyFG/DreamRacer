@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 	public GameObject items1;
 	public GameObject items2;
 
-	public static int currentPlayer = 1;
+	public static int currentPlayer;
 	private bool canInteract = false;
 	
 	private bool useNetwork;
