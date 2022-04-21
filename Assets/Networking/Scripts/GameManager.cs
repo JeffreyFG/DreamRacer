@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour
 	public GameObject car2;
 
 	public GameObject controls2;
-	public GameObject car3;
-
-	public GameObject controls3;
 
 	public GameObject items1;
 	public GameObject items2;
@@ -34,6 +31,17 @@ public class GameManager : MonoBehaviour
 
 	public GameObject camera1;
 	public GameObject camera2;
+
+	// Select vehicle 1 body options start
+	public GameObject Car1RedBody;
+    public GameObject Car1BlueBody;
+    public int CarImport = 2; //Default blue car
+	// Select vehicle 1 body options end
+
+	// Select vehicle 2 body options start
+	public GameObject Car2RedBody;
+    public GameObject Car2BlueBody;
+	// Select vehicle 2 body options end
 
 	void Start()
 	{
@@ -62,7 +70,7 @@ public class GameManager : MonoBehaviour
 			camera2.SetActive (false);camera1.SetActive (true);;
 		}
 		else{
-			car = car3;
+			car = car2;
 			StartCoroutine (CountStart2 ());	
 			camera2.SetActive (true);camera1.SetActive (false);
 		}
@@ -70,6 +78,17 @@ public class GameManager : MonoBehaviour
 	}
 
 	IEnumerator CountStart1 () {
+		CarImport = GlobalCar.CarType;
+        if (CarImport == 1)
+        {
+            Car1RedBody.SetActive(true);
+			Car1BlueBody.SetActive(false);
+        }
+        if (CarImport == 2)
+        {
+            Car1BlueBody.SetActive(true);
+			Car1RedBody.SetActive(false);
+        }
 		
 
 		yield return new WaitForSeconds (0.5f);
@@ -102,7 +121,17 @@ public class GameManager : MonoBehaviour
 
 	}
 	IEnumerator CountStart2 () {
-		
+		CarImport = GlobalCar.CarType;
+        if (CarImport == 1)
+        {
+            Car2RedBody.SetActive(true);
+			Car2BlueBody.SetActive(false);
+        }
+        if (CarImport == 2)
+        {
+            Car2BlueBody.SetActive(true);
+			Car2RedBody.SetActive(false);
+        }
 		yield return new WaitForSeconds (0.5f);
 		CountDown.GetComponent<Text> ().text = "3";
 		GetReady.Play ();
@@ -122,12 +151,12 @@ public class GameManager : MonoBehaviour
 		GoAudio.Play ();
 		LapTimer.SetActive (true);
 
-		car3.GetComponent<CarController>().enabled = true;
+		car2.GetComponent<CarController>().enabled = true;
 		items2.GetComponent<createItem>().isEnabled = true;
 		car1.GetComponent<CarController>().enabled = false;
 		items1.GetComponent<createItem>().isEnabled = false;
 		controls1.SetActive(false);
-		controls3.SetActive(true);
+		controls2.SetActive(true);
 
 		
 	}
