@@ -34,6 +34,7 @@ public class NetworkManager : MonoBehaviour
 		}
 	}
 
+
 	
 	public bool SendJoinRequest()
 	{
@@ -46,6 +47,7 @@ public class NetworkManager : MonoBehaviour
 		}
 		return false;
 	}
+	
 
 	public bool SendLeaveRequest()
 	{

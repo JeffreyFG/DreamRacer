@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 	private bool canInteract = false;
 	
 	private bool useNetwork;
+
 	public NetworkManager networkManager;
 
 	public GameObject CountDown;
@@ -41,6 +42,10 @@ public class GameManager : MonoBehaviour
 	public GameObject Car2RedBody;
     public GameObject Car2BlueBody;
 	public AudioSource LevelMusic;
+	
+	private bool ready = false;
+	private bool opReady = false;
+	public GameObject ReadyButton;
 	void Start()
 	{
 		// StartCoroutine (CountStart ());
@@ -48,13 +53,11 @@ public class GameManager : MonoBehaviour
 		
 		MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
 
-
 		//Here's where the networking start
 		msgQueue.AddCallback(Constants.SMSG_ITEM, OnResponseItem);
 		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
 		msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
-			
-		
+		msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
 	}
 
 	/* TODO: Create protocol that sends finish time to server, and server checks if it already contains a
@@ -64,22 +67,85 @@ public class GameManager : MonoBehaviour
 	}
 	*/
 
+	public void OnResponseReady(ExtendedEventArgs eventArgs)
+	{	
+		ResponseReadyEventArgs args = eventArgs as ResponseReadyEventArgs;
+		if (Constants.USER_ID == -1) // Haven't joined, but got ready message
+		{
+			opReady = true;
+		}
+		else
+		{
+			if (args.user_id == Constants.OP_ID)
+			{
+				opReady = true;
+			}
+			else if (args.user_id == Constants.USER_ID)
+			{
+				ready = true;
+			}
+			else
+			{
+				Debug.Log("ERROR: Invalid user_id in ResponseReady: " + args.user_id);
+				return;
+			}
+		}
+
+		if (ready && opReady)
+		{
+			if (currentPlayer == 1){
+			car = car1;
+			StartCoroutine (CountStart1 ());	
+			camera2.SetActive (false);camera1.SetActive (true);
+			}
+			else{
+				car = car2;
+				StartCoroutine (CountStart2 ());	
+				camera2.SetActive (true);camera1.SetActive (false);
+			}
+		}
+
+		
+		
+	}
+
+	public void StartGame(){
+		bool connected = networkManager.SendJoinRequest();
+		if(connected)
+		{
+			networkManager.SendReadyRequest();
+			
+		}
+		
+		if (!connected)
+		{
+			print("failed to connect");		
+		}
+		ReadyButton.SetActive(false);
+	}
 
 	public void OnResponseJoin(ExtendedEventArgs eventArgs)
 	{
 		ResponseJoinEventArgs args = eventArgs as ResponseJoinEventArgs;
 		currentPlayer = args.user_id;
-
-		if (currentPlayer == 1){
-			car = car1;
-			StartCoroutine (CountStart1 ());	
-			camera2.SetActive (false);camera1.SetActive (true);;
-		}
-		else{
-			car = car2;
-			StartCoroutine (CountStart2 ());	
-			camera2.SetActive (true);camera1.SetActive (false);
-		}
+		if (args.status == 0)
+		{
+			Constants.USER_ID = args.user_id;
+			Constants.OP_ID = 3 - args.user_id;
+		
+			if (args.op_id > 0)
+			{
+				if (args.op_id == Constants.OP_ID)
+				{
+					opReady = args.op_ready;
+				}
+				else
+				{
+					Debug.Log("ERROR: Invalid op_id in ResponseJoin: " + args.op_id);
+					return;
+				}
+			}
+		}		// oponentReady = args.op_ready;
 		
 	}
 
@@ -170,19 +236,21 @@ public class GameManager : MonoBehaviour
 		return Players[currentPlayer - 1];
 	}
 
+	IEnumerator Waiting() {
+	// your process
+		yield return new WaitForSeconds(3);
+	// continue process
+		networkManager.SendReadyRequest();
+	} 
+
+	
 	public void Init(Player player1, Player player2)
 	{
 		Players[0] = player1;
 		Players[1] = player2;
 		currentPlayer = 1;
 		useNetwork = true;
-
-		bool connected = networkManager.SendJoinRequest();
-		if (!connected)
-		{
-			print("failed to connect");		
-		}
-	}
+}
 
 	public bool CanInteract()
 	{
