@@ -70,7 +70,12 @@ public class GameManager : MonoBehaviour
 		ResponseJoinEventArgs args = eventArgs as ResponseJoinEventArgs;
 		currentPlayer = args.user_id;
 
-		if (currentPlayer == 1){
+		networkManager.SendReadyRequest();
+
+
+		/*
+		if (currentPlayer == 1)
+		{
 			car = car1;
 			StartCoroutine (CountStart1 ());	
 			camera2.SetActive (false);camera1.SetActive (true);;
@@ -80,6 +85,7 @@ public class GameManager : MonoBehaviour
 			StartCoroutine (CountStart2 ());	
 			camera2.SetActive (true);camera1.SetActive (false);
 		}
+		*/
 		
 	}
 
@@ -250,5 +256,26 @@ public class GameManager : MonoBehaviour
 		if(args.user_id != currentPlayer && args.user_id == 2){
 			car2.transform.position = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
 		}
+	}
+
+	public void OnResponseReady(ExtendedEventArgs eventArgs)
+	{
+
+
+		ResponseReadyEventArgs args = eventArgs as ResponseReadyEventArgs;
+		currentPlayer = args.user_id;
+
+		if (currentPlayer == 1)
+		{
+			car = car1;
+			StartCoroutine (CountStart1 ());	
+			camera2.SetActive (false);camera1.SetActive (true);;
+		}
+		else{
+			car = car2;
+			StartCoroutine (CountStart2 ());	
+			camera2.SetActive (true);camera1.SetActive (false);
+		}
+
 	}
 }

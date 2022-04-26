@@ -22,6 +22,7 @@ public class NetworkManager : MonoBehaviour
 	void Start()
     {
 		cManager = GetComponent<ConnectionManager>();
+		cManager.setGameManager(gameManager);
 
 		if (cManager)
 		{
