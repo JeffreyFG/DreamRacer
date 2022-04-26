@@ -57,6 +57,8 @@ public class CarController : MonoBehaviour
         EngineSpecs.lowerPowerBand= (EngineSpecs.redline+EngineSpecs.idle)/3;
         EngineSpecs.upperPowerBand = (EngineSpecs.redline+EngineSpecs.idle)/2;
     }
+
+    static int counter = 0;
     private void FixedUpdate()
     {
         
@@ -83,8 +85,14 @@ public class CarController : MonoBehaviour
        // GearShift();
      
         HandleEngine();
+
         
-        manager.StartInteraction();   
+        counter++;
+        
+        if (counter == 10) {
+            manager.StartInteraction(); 
+            counter = 0;
+        } 
 
     }
 private void handleMotorForce(float multiplier){
