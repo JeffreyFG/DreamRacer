@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Countdown : MonoBehaviour {
+	public NetworkManager networkManager;
+	private bool started = false; 
 
 	public GameObject CountDown;
 	public AudioSource GetReady;
@@ -14,11 +16,15 @@ public class Countdown : MonoBehaviour {
 	public AudioSource LevelMusic;
 
 	void Start () {
-		StartCoroutine (CountStart ());		
+		StartCoroutine (CountStart ());	
+				started = true; 
+		
+			
 	}
 
+	IEnumerator CountStart () 
+	{
 
-	IEnumerator CountStart () {
 		yield return new WaitForSeconds (0.5f);
 		CountDown.GetComponent<Text> ().text = "3";
 		GetReady.Play ();
