@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Vehicles.Car;
+using System;
 public class RaceFinish : MonoBehaviour
 {
     public GameObject MyCar1;
@@ -21,11 +22,21 @@ public class RaceFinish : MonoBehaviour
 
     public AudioSource FinishMusic;
 
+    public GameManager gameManager;
 
-    void OnTriggerEnter() {
-        if(GameManager.currentPlayer == 1)
+    private int MilliCount;
+    void OnTriggerEnter(Collider collider) {
+        MilliCount = (int)Math.Ceiling(PlayerPrefs.GetFloat ("MilliSave")) + (PlayerPrefs.GetInt ("SecSave") * 1000) + (PlayerPrefs.GetInt ("MinSave") * 1000 * 60);
+
+        if (collider.transform.CompareTag("c1"))
+        // if(GameManager.currentPlayer == 1)
         {
+            GameManager.completedTime = MilliCount;
+            Debug.Log(MilliCount);
+            // GameManager.completedTime = 10; // Placeholder to select winner
+            gameManager.FinishGame();
             MyCar1.SetActive (false);
+            
             CompleteTrig.SetActive(false);
             // CarController.m_Topspeed = 0.0f;
             // MyCar1.GetComponent<CarController>().enabled = false;
@@ -37,9 +48,15 @@ public class RaceFinish : MonoBehaviour
             FinishMusic.Play();
             
         }
-        if(GameManager.currentPlayer == 2)
+        else if (collider.transform.CompareTag("c2"))
+        // else if(GameManager.currentPlayer == 2)
         {
+            GameManager.opCompletedTime = MilliCount;
+            Debug.Log(MilliCount);
+            // GameManager.completedTime = 20; // Placeholder to select winner
+            gameManager.FinishGame();
             MyCar2.SetActive (false);
+            
             CompleteTrig.SetActive(false);
             // CarController.m_Topspeed = 0.0f;
             // MyCar2.GetComponent<CarController>().enabled = false;
@@ -47,7 +64,7 @@ public class RaceFinish : MonoBehaviour
             controls2.SetActive(false);
             FinishCam2.SetActive (false);
             MyCar2.SetActive (true);
-            FinishCam1.SetActive (true);
+            FinishCam2.SetActive (true);
             FinishMusic.Play();
         }
         

@@ -7,8 +7,8 @@ import utility.GamePacket;
 import utility.Log;
 
 /**
- *
  */
+
 public class ResponseHasFinished extends GameResponse {
     private Player player;
 

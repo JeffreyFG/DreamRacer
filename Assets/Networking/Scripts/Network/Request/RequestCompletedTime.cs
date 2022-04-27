@@ -9,7 +9,7 @@ public class RequestCompletedTime : NetworkRequest
 		request_id = Constants.CMSG_TIME;
 	}
 
-	public void send(int completedTime)
+	public void send(float completedTime)
 	{	
 		string completedTimeString = completedTime.ToString();
 		packet = new GamePacket(request_id);

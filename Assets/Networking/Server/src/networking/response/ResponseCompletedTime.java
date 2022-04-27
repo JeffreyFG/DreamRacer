@@ -8,7 +8,7 @@ import utility.Log;
 
 public class ResponseCompletedTime extends GameResponse{
     private Player player;
-    private int completedTime;
+    private String completedTime;
     public ResponseCompletedTime() {
         responseCode = Constants.SMSG_TIME;
     }
@@ -17,10 +17,10 @@ public class ResponseCompletedTime extends GameResponse{
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
         packet.addInt32(player.getID());
-        packet.addInt32(completedTime);
+        packet.addString(completedTime);
 
 
-        Log.printf("Player with id %d completedTime is %s", player.getID(), completedTime);
+        Log.printf("Player with id %d completed time is %s", player.getID(), completedTime);
 
         return packet.getBytes();
     }
@@ -29,7 +29,7 @@ public class ResponseCompletedTime extends GameResponse{
         this.player = player;
     }
 
-    public void setCompletedTime(int completedTime) {
+    public void setCompletedTime(String completedTime) {
         this.completedTime = completedTime;
     }
 }

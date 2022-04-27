@@ -109,6 +109,30 @@ public class NetworkManager : MonoBehaviour
 		return false;
 	}
 
+	public bool SendCompletedTimeRequest(int completedTime)
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestCompletedTime request = new RequestCompletedTime();
+			request.send(completedTime);
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
+	public bool SendHasFinishedRequest()
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestHasFinished request = new RequestHasFinished();
+			request.send();
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
 	public bool SendItemRequest(Vector3 location)
 	{
 		if (cManager && cManager.IsConnected())

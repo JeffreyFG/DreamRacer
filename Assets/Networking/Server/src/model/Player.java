@@ -14,7 +14,7 @@ public class Player {
     private String name;
     private GameClient client; // References GameClient instance
     private boolean hasFinished = false;
-    private int completeTime;
+    private String completeTime;
 
     public Player(int player_id) {
         this.player_id = player_id;
@@ -61,9 +61,9 @@ public class Player {
         hasFinished = status;
     }
 
-    public int getCompleteTime() {return completeTime;}
+    public String getCompletedTime() {return completeTime;}
 
-    public void setCompleteTime(int completeTime){this.completeTime = completeTime;}
+    public void setCompletedTime(String completeTime){this.completeTime = completeTime;}
     
 
     public GameClient setClient(GameClient client) {
