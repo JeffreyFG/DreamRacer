@@ -15,6 +15,8 @@ public class NetworkRequestTable {
 		add(Constants.CMSG_READY, "RequestReady");
 		add(Constants.CMSG_MOVE, "RequestMove");
 		add(Constants.CMSG_INTERACT, "RequestInteract");
+		add(Constants.CMSG_FINISHED, "RequestFinished");
+		add(Constants.CMSG_TIME, "RequestTime");
 	}
 	
 	public static void add(short request_id, string name) {
