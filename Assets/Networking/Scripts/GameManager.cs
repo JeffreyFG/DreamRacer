@@ -63,7 +63,6 @@ public class GameManager : MonoBehaviour
 	/* TODO: Create protocol that sends finish time to server, and server checks if it already contains a
 		finish time. If it doesn't then this player has won 
 	public void OnResponseWinner(){
-
 	}
 	*/
 
@@ -90,24 +89,13 @@ public class GameManager : MonoBehaviour
 				return;
 			}
 		}
-	}
-	public OnResponseJoin(ExtendedEventArgs eventArgs)
-	{
-		ResponseJoinEventArgs args = eventArgs as ResponseJoinEventArgs;
-		currentPlayer = args.user_id;
 
-		networkManager.SendReadyRequest();
-
-
-		/*
-		if (currentPlayer == 1)
-		{
 		if (ready && opReady)
 		{
 			if (currentPlayer == 1){
-			car = car1;
-			StartCoroutine (CountStart1 ());	
-			camera2.SetActive (false);camera1.SetActive (true);
+				car = car1;
+				StartCoroutine (CountStart1 ());	
+				camera2.SetActive (false);camera1.SetActive (true);
 			}
 			else{
 				car = car2;
@@ -127,7 +115,6 @@ public class GameManager : MonoBehaviour
 			networkManager.SendReadyRequest();
 			
 		}
-		*/
 		
 		if (!connected)
 		{
@@ -330,26 +317,5 @@ public class GameManager : MonoBehaviour
 		if(args.user_id != currentPlayer && args.user_id == 2){
 			car2.transform.position = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
 		}
-	}
-
-	public void OnResponseReady(ExtendedEventArgs eventArgs)
-	{
-
-
-		ResponseReadyEventArgs args = eventArgs as ResponseReadyEventArgs;
-		currentPlayer = args.user_id;
-
-		if (currentPlayer == 1)
-		{
-			car = car1;
-			StartCoroutine (CountStart1 ());	
-			camera2.SetActive (false);camera1.SetActive (true);;
-		}
-		else{
-			car = car2;
-			StartCoroutine (CountStart2 ());	
-			camera2.SetActive (true);camera1.SetActive (false);
-		}
-
 	}
 }
