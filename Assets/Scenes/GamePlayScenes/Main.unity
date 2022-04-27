@@ -4115,8 +4115,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323822188}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 93.41823, y: -91.02185, z: 10.3987465}
+  m_LocalRotation: {x: 0.087172285, y: 0.89959055, z: 0.21045254, w: -0.37262255}
+  m_LocalPosition: {x: 50.372025, y: -68.94798, z: 360.28516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -7477,7 +7477,7 @@ GameObject:
   - component: {fileID: 596675939}
   m_Layer: 0
   m_Name: Car 3
-  m_TagString: Untagged
+  m_TagString: c3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11534,7 +11534,7 @@ GameObject:
   - component: {fileID: 850077086}
   m_Layer: 0
   m_Name: Car 2
-  m_TagString: Untagged
+  m_TagString: c2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12069,8 +12069,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872194538}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75.87136, y: -80.53363, z: 10.496824}
+  m_LocalRotation: {x: 0.087172285, y: 0.89959055, z: 0.21045254, w: -0.37262255}
+  m_LocalPosition: {x: 50.372025, y: -69.34798, z: 360.28516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -15265,8 +15265,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165268005}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 50.34963, y: -85.246796, z: 10.151865}
+  m_LocalRotation: {x: 0.087172285, y: 0.89959055, z: 0.21045254, w: -0.37262255}
+  m_LocalPosition: {x: 50.372025, y: -73.44798, z: 360.28516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -15648,8 +15648,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195204951}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 43.309357, y: -74.105804, z: 10.258524}
+  m_LocalRotation: {x: 0.087172285, y: 0.89959055, z: 0.21045254, w: -0.37262255}
+  m_LocalPosition: {x: 50.372025, y: -68.94798, z: 360.28516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -28939,6 +28939,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Car 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5248388537498905386, guid: 85cd09fa118ce4478b1aa1e575d9f0f5, type: 3}
+      propertyPath: m_TagString
+      value: c1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85cd09fa118ce4478b1aa1e575d9f0f5, type: 3}
 --- !u!33 &4356012028309412560
@@ -28956,6 +28960,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4816637053893211000, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4816637053893211007, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
       propertyPath: MyCar1
       value: 
@@ -28996,6 +29004,10 @@ PrefabInstance:
       propertyPath: FinishMusic
       value: 
       objectReference: {fileID: 2129290811}
+    - target: {fileID: 4816637053893211007, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 609573128}
     - target: {fileID: 4816637054388681892, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
       propertyPath: CountDown
       value: 
@@ -29036,6 +29048,14 @@ PrefabInstance:
       propertyPath: SecondDisplay
       value: 
       objectReference: {fileID: 17414222}
+    - target: {fileID: 4816637055186885039, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4816637055186885039, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 249.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4816637055506391634, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
       propertyPath: MinDisplay
       value: 
@@ -29164,6 +29184,14 @@ PrefabInstance:
       propertyPath: Car2BlueBody
       value: 
       objectReference: {fileID: 1809939306}
+    - target: {fileID: 4816637055763094025, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: LoserDisplay
+      value: 
+      objectReference: {fileID: 2068792900}
+    - target: {fileID: 4816637055763094025, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: WinnerDisplay
+      value: 
+      objectReference: {fileID: 671423694}
     - target: {fileID: 4816637056007738820, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
       propertyPath: MilliBox
       value: 

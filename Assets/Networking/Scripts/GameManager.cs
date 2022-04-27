@@ -46,6 +46,17 @@ public class GameManager : MonoBehaviour
 	private bool ready = false;
 	private bool opReady = false;
 	public GameObject ReadyButton;
+
+	public static int completedTime;
+
+	public static int opCompletedTime;
+
+	public static bool hasFinished = false;
+
+	public static bool opHasFinished = false;
+
+	public GameObject WinnerDisplay;
+	public GameObject LoserDisplay;
 	void Start()
 	{
 		// StartCoroutine (CountStart ());
@@ -58,6 +69,21 @@ public class GameManager : MonoBehaviour
 		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
 		msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
 		msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
+		msgQueue.AddCallback(Constants.SMSG_FINISHED, OnResponseHasFinished);
+		msgQueue.AddCallback(Constants.SMSG_TIME, OnResponseCompletedTime);
+	}
+
+	public void FinishGame() 
+	{
+		// networkManager.SendHasFinishedRequest();
+		
+		if (currentPlayer == 1){
+				networkManager.SendCompletedTimeRequest(completedTime);
+		}
+		else if (currentPlayer == 2){
+				networkManager.SendCompletedTimeRequest(opCompletedTime);
+		}
+
 	}
 
 	/* TODO: Create protocol that sends finish time to server, and server checks if it already contains a
@@ -65,6 +91,80 @@ public class GameManager : MonoBehaviour
 	public void OnResponseWinner(){
 	}
 	*/
+
+	// void Update() 
+	// {
+	// 	if (completedTime > 0)
+	// 	{
+			// networkManager.SendHasFinishedRequest();
+			// networkManager.SendCompletedTimeRequest(completedTime);
+	// 	}
+	// }
+
+	public void OnResponseHasFinished(ExtendedEventArgs eventArgs)
+	{	
+		ResponseHasFinishedEventArgs args = eventArgs as ResponseHasFinishedEventArgs;
+		if (Constants.USER_ID == -1) // Haven't joined, but got ready message
+		{
+			opHasFinished = true;
+		}
+		else
+		{
+			if (args.user_id == Constants.OP_ID)
+			{
+				opHasFinished = true;
+			}
+			else if (args.user_id == Constants.USER_ID)
+			{
+				hasFinished = true;
+			}
+			else
+			{
+				Debug.Log("ERROR: Invalid user_id in ResponseHasFinished: " + args.user_id);
+				return;
+			}
+		}
+
+		if (hasFinished && opHasFinished && completedTime != null && opCompletedTime != null)
+		{
+			if (currentPlayer == 1){
+				if(!WinnerDisplay.activeSelf && !LoserDisplay.activeSelf){
+					if (completedTime > opCompletedTime)
+					{
+						print("Has won the game");
+						
+						WinnerDisplay.SetActive(true);
+						
+					}
+					else
+					{
+						// if(!WinnerDisplay.activeSelf){
+						LoserDisplay.SetActive(true);
+						// }
+						print("Has lost the game");
+					}
+				}
+			}
+			else if (currentPlayer == 2){
+				if(!WinnerDisplay.activeSelf && !LoserDisplay.activeSelf){
+					if (opCompletedTime > completedTime)
+					{
+						print("Has won the game");
+						
+						WinnerDisplay.SetActive(true);
+					}
+					else
+					{
+						// if(!WinnerDisplay.activeSelf){
+						LoserDisplay.SetActive(true);
+						// }
+						print("Has lost the game");
+					}
+				}
+			}
+		}	
+		
+	}
 
 	public void OnResponseReady(ExtendedEventArgs eventArgs)
 	{	
@@ -103,17 +203,15 @@ public class GameManager : MonoBehaviour
 				camera2.SetActive (true);camera1.SetActive (false);
 			}
 		}
-
-		
-		
 	}
 
 	public void StartGame(){
 		bool connected = networkManager.SendJoinRequest();
 		if(connected)
 		{
+			print("sending ready request");
 			networkManager.SendReadyRequest();
-			
+			print("sent ready request");
 		}
 		
 		if (!connected)
@@ -317,5 +415,17 @@ public class GameManager : MonoBehaviour
 		if(args.user_id != currentPlayer && args.user_id == 2){
 			car2.transform.position = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
 		}
+	}
+
+	public void OnResponseCompletedTime(ExtendedEventArgs eventArgs)
+	{
+		ResponseCompletedTimeEventArgs args = eventArgs as ResponseCompletedTimeEventArgs;
+		if(args.user_id != currentPlayer && args.user_id == 1){
+			completedTime = int.Parse(args.completedTime);
+		}
+		if(args.user_id != currentPlayer && args.user_id == 2){
+			opCompletedTime = int.Parse(args.completedTime);
+		}
+		networkManager.SendHasFinishedRequest();
 	}
 }
