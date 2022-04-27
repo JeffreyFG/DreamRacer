@@ -10,7 +10,6 @@ using System.Text;
 public class ConnectionManager : MonoBehaviour
 {
 	private GameObject networkManager;
-	public GameManager gameManager;
 	private TcpClient mySocket;
 	private NetworkStream theStream;
 	private bool socketReady = false;
@@ -37,10 +36,7 @@ public class ConnectionManager : MonoBehaviour
 			Debug.Log("Socket error: " + e);
 		}
 	}
-	public void setGameManager(GameManager gm)
-	{
-		gameManager = gm;
-	}
+
 	public void readSocket()
 	{
 		if (!socketReady)
@@ -57,7 +53,6 @@ public class ConnectionManager : MonoBehaviour
 			MemoryStream dataStream = new MemoryStream(buffer);
 			short response_id = DataReader.ReadShort(dataStream);
 			NetworkResponse response = NetworkResponseTable.get(response_id);
-			response.setGameManager(gameManager); 
 			if (response != null)
 			{
 				response.dataStream = dataStream;

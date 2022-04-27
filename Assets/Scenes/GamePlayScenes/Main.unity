@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2138677392}
-  m_IndirectSpecularColor: {r: 0.13513187, g: 0.14836529, b: 0.1614475, a: 1}
+  m_IndirectSpecularColor: {r: 0.13471615, g: 0.14837316, b: 0.16128165, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4116,7 +4116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323822188}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 348.37332, y: -249.51738, z: -744.98865}
+  m_LocalPosition: {x: 93.41823, y: -91.02185, z: 10.3987465}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -7794,26 +7794,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aab1d2af62f457458fb33b2c1e86722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car1: {fileID: 4952656222444132782}
-  controls1: {fileID: 1939228506}
-  car2: {fileID: 850077085}
-  controls2: {fileID: 1940209515}
-  items1: {fileID: 1248259986}
-  items2: {fileID: 1622063364}
-  networkManager: {fileID: 1708360230}
-  CountDown: {fileID: 1994147890}
-  GetReady: {fileID: 7564975}
-  GoAudio: {fileID: 1847293238}
-  LapTimer: {fileID: 733501124}
-  camera1: {fileID: 2139726062}
-  camera2: {fileID: 1836850776}
-  Car1RedBody: {fileID: 1425536225}
-  Car1BlueBody: {fileID: 4952003667498617960}
-  CarImport: 0
-  Car2RedBody: {fileID: 813766549}
-  Car2BlueBody: {fileID: 1809939306}
-  LevelMusic: {fileID: 643862430}
-  ReadyButton: {fileID: 414292235}
 --- !u!1001 &613279599
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12090,7 +12070,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 872194538}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 348.37332, y: -249.91739, z: -744.98865}
+  m_LocalPosition: {x: 75.87136, y: -80.53363, z: 10.496824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -15286,7 +15266,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1165268005}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 348.37332, y: -254.01738, z: -744.98865}
+  m_LocalPosition: {x: 50.34963, y: -85.246796, z: 10.151865}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -15669,7 +15649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195204951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 348.37332, y: -249.51738, z: -744.98865}
+  m_LocalPosition: {x: 43.309357, y: -74.105804, z: 10.258524}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 754939929}
@@ -29028,6 +29008,10 @@ PrefabInstance:
       propertyPath: CarControls
       value: 
       objectReference: {fileID: 1939228506}
+    - target: {fileID: 4816637054388681893, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: m_Name
+      value: CountdownManager
+      objectReference: {fileID: 0}
     - target: {fileID: 4816637054604950049, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
       propertyPath: MiniMapObject1
       value: 
@@ -29168,6 +29152,10 @@ PrefabInstance:
       propertyPath: Car2RedBody
       value: 
       objectReference: {fileID: 813766549}
+    - target: {fileID: 4816637055763094025, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
+      propertyPath: ReadyButton
+      value: 
+      objectReference: {fileID: 414292235}
     - target: {fileID: 4816637055763094025, guid: acaaa8d8fdc3543959d9069cfabd4dda, type: 3}
       propertyPath: Car1BlueBody
       value: 
