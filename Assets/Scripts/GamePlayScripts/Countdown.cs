@@ -41,4 +41,3 @@ public class Countdown : MonoBehaviour {
 		CarControls.SetActive (true);
 	}
 }
-

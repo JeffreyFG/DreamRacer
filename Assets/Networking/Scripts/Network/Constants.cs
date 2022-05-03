@@ -21,6 +21,10 @@ public class Constants
 	public static readonly short SMSG_INTERACT = 206;
 	public static readonly short CMSG_ITEM = 107;
 	public static readonly short SMSG_ITEM = 207;
+	public static readonly short CMSG_FINISHED = 108;
+	public static readonly short SMSG_FINISHED = 208;
+	public static readonly short CMSG_TIME = 109;
+	public static readonly short SMSG_TIME = 209;
 
 	public static readonly short CMSG_HEARTBEAT = 111;
 

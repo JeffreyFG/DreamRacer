@@ -34,6 +34,7 @@ public class NetworkManager : MonoBehaviour
 		}
 	}
 
+
 	
 	public bool SendJoinRequest()
 	{
@@ -46,6 +47,7 @@ public class NetworkManager : MonoBehaviour
 		}
 		return false;
 	}
+	
 
 	public bool SendLeaveRequest()
 	{
@@ -101,6 +103,30 @@ public class NetworkManager : MonoBehaviour
 		{
 			RequestInteract request = new RequestInteract();
 			request.send(location.x, location.y, location.z);
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
+	public bool SendCompletedTimeRequest(int completedTime)
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestCompletedTime request = new RequestCompletedTime();
+			request.send(completedTime);
+			cManager.send(request);
+			return true;
+		}
+		return false;
+	}
+
+	public bool SendHasFinishedRequest()
+	{
+		if (cManager && cManager.IsConnected())
+		{
+			RequestHasFinished request = new RequestHasFinished();
+			request.send();
 			cManager.send(request);
 			return true;
 		}
