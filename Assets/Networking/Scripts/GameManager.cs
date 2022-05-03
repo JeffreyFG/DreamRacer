@@ -7,11 +7,14 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+	
 	public Player[] Players = new Player[2];
+	public float movementTime;
 	private GameObject car;
 	public GameObject car1;
 	public GameObject controls1;
 	public GameObject car2;
+	
 
 	public GameObject controls2;
 
@@ -244,11 +247,14 @@ public class GameManager : MonoBehaviour
 	public void OnResponseInteract(ExtendedEventArgs eventArgs)
 	{
 		ResponseInteractEventArgs args = eventArgs as ResponseInteractEventArgs;
+		Vector3 target = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
 		if(args.user_id != currentPlayer && args.user_id == 1){
-			car1.transform.position = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
+			car1.transform.position = Vector3.Lerp(car1.transform.position, target, Time.deltaTime * movementTime);
 		}
 		if(args.user_id != currentPlayer && args.user_id == 2){
-			car2.transform.position = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
+			car2.transform.position = Vector3.Lerp(car2.transform.position, target, Time.deltaTime * movementTime);
 		}
+
+		Debug.Log("x" + args.x + "y" + args.y + "z" + args.z);
 	}
 }

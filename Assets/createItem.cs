@@ -19,7 +19,7 @@ public class createItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Jump") & isEnabled){
+        if(Input.GetButtonUp("Jump") & isEnabled){
           SpawnItem();  
         }
     }

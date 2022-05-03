@@ -20,9 +20,11 @@ public class MessageQueue : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		while (msgQueue!=null && msgQueue.Count > 0) {
+			Debug.Log("queue count: " + msgQueue.Count);
 			ExtendedEventArgs args = msgQueue.Dequeue();
+			
 			if (callbackList.ContainsKey(args.event_id)) {
 				callbackList[args.event_id](args);
 				// Debug.Log("Processed Event No. " + args.event_id + " [" + args.GetType() + "]");

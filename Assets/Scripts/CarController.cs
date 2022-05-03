@@ -56,6 +56,7 @@ public class CarController : MonoBehaviour
     void Start(){
         EngineSpecs.lowerPowerBand= (EngineSpecs.redline+EngineSpecs.idle)/3;
         EngineSpecs.upperPowerBand = (EngineSpecs.redline+EngineSpecs.idle)/2;
+        InvokeRepeating("sendPos", 0, 0.06f);
     }
     private void FixedUpdate()
     {
@@ -84,8 +85,12 @@ public class CarController : MonoBehaviour
      
         HandleEngine();
         
-        manager.StartInteraction();   
+        
 
+    }
+
+    private void sendPos(){
+        manager.StartInteraction();   
     }
 private void handleMotorForce(float multiplier){
 
@@ -120,10 +125,7 @@ if(currentRPM<=EngineSpecs.idle&&currentGear>1){
        
 
 }}
-    private void Update() {
-        //sends location update to server 
-        
-    }
+    
     private void GetInput()
     {
         horizontalInput = Input.GetAxis(HORIZONTAL);
