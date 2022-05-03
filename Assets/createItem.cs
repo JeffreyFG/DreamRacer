@@ -9,6 +9,8 @@ public class createItem : MonoBehaviour
 
     public GameManager manager;
 
+    private bool buttoncheck;
+
     public bool isEnabled = false;
     // Start is called before the first frame update
     void Start()
@@ -19,9 +21,21 @@ public class createItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Jump") & isEnabled){
-          SpawnItem();  
+    
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isEnabled)
+        {
+            if(buttoncheck){
+                buttoncheck = false;
+                 SpawnItem();  
+             }
+            
         }
+        
+        if (Input.GetKeyUp(KeyCode.LeftControl) && isEnabled)
+        {
+            buttoncheck = true;
+        } 
+
     }
     public void SpawnItem(){
 
