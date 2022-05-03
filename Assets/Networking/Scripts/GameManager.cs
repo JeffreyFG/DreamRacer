@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 	public void OnResponseWinner(){
 
 	}
-	*/
+	
 
 	public void OnResponseReady(ExtendedEventArgs eventArgs)
 	{	
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
-	public OnResponseJoin(ExtendedEventArgs eventArgs)
+	public void OnResponseJoin(ExtendedEventArgs eventArgs)
 	{
 		ResponseJoinEventArgs args = eventArgs as ResponseJoinEventArgs;
 		currentPlayer = args.user_id;
@@ -116,9 +116,9 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+	
 		
-		
-	}
+	}	*/
 
 	public void StartGame(){
 		bool connected = networkManager.SendJoinRequest();
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 			networkManager.SendReadyRequest();
 			
 		}
-		*/
+		
 		
 		if (!connected)
 		{
