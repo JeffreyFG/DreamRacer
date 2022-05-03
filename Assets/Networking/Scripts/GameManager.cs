@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
 		finish time. If it doesn't then this player has won 
 	public void OnResponseWinner(){
 	}
-	
+	*/
 
 	// void Update() 
 	// {
