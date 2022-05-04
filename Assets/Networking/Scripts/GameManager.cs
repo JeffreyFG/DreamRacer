@@ -350,11 +350,19 @@ public class GameManager : MonoBehaviour
         {
             Car2RedBody.SetActive(true);
 			Car2BlueBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(false);
         }
         if (CarImport == 2)
         {
             Car2BlueBody.SetActive(true);
 			Car2RedBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(false);
         }
 		if (CarImport == 3)
         {
