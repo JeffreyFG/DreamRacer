@@ -359,7 +359,7 @@ public class GameManager : MonoBehaviour
 
 	public void StartInteraction()
 	{	
-		networkManager.SendInteractRequest(car.transform.position);
+		networkManager.SendInteractRequest(car.transform.position, car.transform.rotation.y);
 	}
 
 	public void CreateItem(GameObject item)
@@ -413,14 +413,17 @@ public class GameManager : MonoBehaviour
 	{
 		ResponseInteractEventArgs args = eventArgs as ResponseInteractEventArgs;
 		Vector3 target = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
+		float rot = float.Parse(args.rot);
 		if(args.user_id != currentPlayer && args.user_id == 1){
 			car1.transform.position = Vector3.Lerp(car1.transform.position, target, Time.deltaTime * movementTime);
+			car1.transform.rotation = new Quaternion(car1.transform.rotation.x, rot, car1.transform.rotation.z, car1.transform.rotation.w);
 		}
 		if(args.user_id != currentPlayer && args.user_id == 2){
 			car2.transform.position = Vector3.Lerp(car2.transform.position, target, Time.deltaTime * movementTime);
+			car2.transform.rotation = new Quaternion(car2.transform.rotation.x, rot, car2.transform.rotation.z, car2.transform.rotation.w);
 		}
 
-		Debug.Log("x" + args.x + "y" + args.y + "z" + args.z);
+		Debug.Log("x" + args.x + "y" + args.y + "z" + args.z + "rot" + args.rot);
 	}
 
 	public void OnResponseCompletedTime(ExtendedEventArgs eventArgs)
