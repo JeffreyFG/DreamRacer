@@ -36,8 +36,8 @@ public class CarController : MonoBehaviour
     private bool isBraking;
     private bool isShifting;
    
-    [SerializeField] private float topSpeed;
-    [SerializeField] private float maxMotorForce;
+    [SerializeField] public  float topSpeed;
+    [SerializeField] public float maxMotorForce;
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
     [SerializeField] private float maxSteerAngle;
