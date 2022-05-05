@@ -17,6 +17,10 @@ public class NetworkManager : MonoBehaviour
 		NetworkRequestTable.init();
 		NetworkResponseTable.init();
 	}
+	void OnApplicationQuit()
+    {
+		SendLeaveRequest();
+    }
 
 	// Start is called before the first frame update
 	void Start()
