@@ -20,6 +20,7 @@ public class NetworkManager : MonoBehaviour
 	void OnApplicationQuit()
     {
 		SendLeaveRequest();
+		cManager.closeSocket();
     }
 
 	// Start is called before the first frame update
