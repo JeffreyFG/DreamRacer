@@ -17,6 +17,11 @@ public class NetworkManager : MonoBehaviour
 		NetworkRequestTable.init();
 		NetworkResponseTable.init();
 	}
+	void OnApplicationQuit()
+    {
+		SendLeaveRequest();
+		cManager.closeSocket();
+    }
 
 	// Start is called before the first frame update
 	void Start()
@@ -97,12 +102,12 @@ public class NetworkManager : MonoBehaviour
 		return false;
 	}
 
-	public bool SendInteractRequest(Vector3 location)
+	public bool SendInteractRequest(Vector3 location, float rotation)
 	{
 		if (cManager && cManager.IsConnected())
 		{
 			RequestInteract request = new RequestInteract();
-			request.send(location.x, location.y, location.z);
+			request.send(location.x, location.y, location.z, rotation);
 			cManager.send(request);
 			return true;
 		}
