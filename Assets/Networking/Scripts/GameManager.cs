@@ -257,7 +257,7 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-		IEnumerator CountStart1 () {
+	IEnumerator CountStart1 () {
 		CarImport = GlobalCar.CarType;
         if (CarImport == 1)
         {
