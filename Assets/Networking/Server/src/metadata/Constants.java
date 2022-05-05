@@ -23,10 +23,13 @@ public class Constants {
 	final public static short SMSG_MOVE = 205;
 	final public static short CMSG_INTERACT = 106;
 	final public static short SMSG_INTERACT = 206;
-	final public static short CMSG_FINISHED= 108;
+	final public static short CMSG_ITEM = 107;
+	final public static short SMSG_ITEM = 207;
+	final public static short CMSG_FINISHED = 108;
 	final public static short SMSG_FINISHED = 208;
-	final public static short CMSG_TIME= 109;
+	final public static short CMSG_TIME = 109;
 	final public static short SMSG_TIME = 209;
+
 
 	final public static short CMSG_HEARTBEAT = 111;
 
