@@ -14,4 +14,20 @@ public class GlobalCar : MonoBehaviour
     {
         CarType = 2;
     }
+    public void OrangeCar () 
+    {
+        CarType = 3;
+    }
+    public void GreenCar () 
+    {
+        CarType = 4;
+    }
+    public void YellowCar () 
+    {
+        CarType = 5;
+    }
+    public void WhiteCar () 
+    {
+        CarType = 6;
+    }
 }

@@ -39,11 +39,19 @@ public class GameManager : MonoBehaviour
 	// Select vehicle 1 body options start
 	public GameObject Car1RedBody;
     public GameObject Car1BlueBody;
+	public GameObject Car1OrangeBody;
+	public GameObject Car1GreenBody;
+	public GameObject Car1YellowBody;
+	public GameObject Car1WhiteBody;
     public int CarImport = 2; //Default blue car
 
 	// Select vehicle 2 body options start
 	public GameObject Car2RedBody;
     public GameObject Car2BlueBody;
+	public GameObject Car2OrangeBody;
+	public GameObject Car2GreenBody;
+	public GameObject Car2YellowBody;
+	public GameObject Car2WhiteBody;
 	public AudioSource LevelMusic;
 	
 	private bool ready = false;
@@ -249,18 +257,63 @@ public class GameManager : MonoBehaviour
 		
 	}
 
-	IEnumerator CountStart1 () {
+		IEnumerator CountStart1 () {
 		CarImport = GlobalCar.CarType;
         if (CarImport == 1)
         {
             Car1RedBody.SetActive(true);
 			Car1BlueBody.SetActive(false);
+			Car1OrangeBody.SetActive(false);
+			Car1GreenBody.SetActive(false);
+			Car1YellowBody.SetActive(false);
+			Car1WhiteBody.SetActive(false);
         }
         if (CarImport == 2)
         {
             Car1BlueBody.SetActive(true);
 			Car1RedBody.SetActive(false);
+			Car1OrangeBody.SetActive(false);
+			Car1GreenBody.SetActive(false);
+			Car1YellowBody.SetActive(false);
+			Car1WhiteBody.SetActive(false);
         }
+		if (CarImport == 3)
+        {
+            Car1BlueBody.SetActive(false);
+			Car1RedBody.SetActive(false);
+			Car1OrangeBody.SetActive(true);
+			Car1GreenBody.SetActive(false);
+			Car1YellowBody.SetActive(false);
+			Car1WhiteBody.SetActive(false);
+        }
+		if (CarImport == 4)
+        {
+            Car1BlueBody.SetActive(false);
+			Car1RedBody.SetActive(false);
+			Car1OrangeBody.SetActive(false);
+			Car1GreenBody.SetActive(true);
+			Car1YellowBody.SetActive(false);
+			Car1WhiteBody.SetActive(false);
+        }
+		if (CarImport == 5)
+        {
+            Car1BlueBody.SetActive(false);
+			Car1RedBody.SetActive(false);
+			Car1OrangeBody.SetActive(false);
+			Car1GreenBody.SetActive(false);
+			Car1YellowBody.SetActive(true);
+			Car1WhiteBody.SetActive(false);
+        }
+		if (CarImport == 6)
+        {
+            Car1BlueBody.SetActive(false);
+			Car1RedBody.SetActive(false);
+			Car1OrangeBody.SetActive(false);
+			Car1GreenBody.SetActive(false);
+			Car1YellowBody.SetActive(false);
+			Car1WhiteBody.SetActive(true);
+        }
+
 		
 
 		yield return new WaitForSeconds (0.5f);
@@ -297,12 +350,57 @@ public class GameManager : MonoBehaviour
         {
             Car2RedBody.SetActive(true);
 			Car2BlueBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(false);
         }
         if (CarImport == 2)
         {
             Car2BlueBody.SetActive(true);
 			Car2RedBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(false);
         }
+		if (CarImport == 3)
+        {
+            Car2BlueBody.SetActive(false);
+			Car2RedBody.SetActive(false);
+			Car2OrangeBody.SetActive(true);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(false);
+        }
+		if (CarImport == 4)
+        {
+            Car2BlueBody.SetActive(false);
+			Car2RedBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(true);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(false);
+        }
+		if (CarImport == 5)
+        {
+            Car2BlueBody.SetActive(false);
+			Car2RedBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(true);
+			Car2WhiteBody.SetActive(false);
+        }
+		if (CarImport == 6)
+        {
+            Car2BlueBody.SetActive(false);
+			Car2RedBody.SetActive(false);
+			Car2OrangeBody.SetActive(false);
+			Car2GreenBody.SetActive(false);
+			Car2YellowBody.SetActive(false);
+			Car2WhiteBody.SetActive(true);
+        }
+
 		yield return new WaitForSeconds (0.5f);
 		CountDown.GetComponent<Text> ().text = "3";
 		GetReady.Play ();

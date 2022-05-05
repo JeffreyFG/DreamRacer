@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Vehicles.Car;
 using System;
+using UnityEngine.SceneManagement;
 public class RaceFinish : MonoBehaviour
 {
     public GameObject MyCar1;
@@ -19,14 +20,19 @@ public class RaceFinish : MonoBehaviour
     public GameObject LevelMusic;
 
     public GameObject CompleteTrig;
+    public GameObject PauseMenu;
 
     public AudioSource FinishMusic;
 
     public GameManager gameManager;
 
     private int MilliCount;
-    void OnTriggerEnter(Collider collider) {
+
+    // public RaceFinishLoadScene rFL;
+
+    public void OnTriggerEnter(Collider collider) {
         MilliCount = (int)Math.Ceiling(PlayerPrefs.GetFloat ("MilliSave")) + (PlayerPrefs.GetInt ("SecSave") * 1000) + (PlayerPrefs.GetInt ("MinSave") * 1000 * 60);
+   
 
         if (collider.transform.CompareTag("c1"))
         // if(GameManager.currentPlayer == 1)
@@ -45,8 +51,9 @@ public class RaceFinish : MonoBehaviour
             FinishCam1.SetActive (false);
             MyCar1.SetActive (true);
             FinishCam1.SetActive (true);
-            FinishMusic.Play();
-            
+            // rFL.EndingLoadScene();
+            FinishMusic.Play(); 
+            PauseMenu.SetActive(true);
         }
         else if (collider.transform.CompareTag("c2"))
         // else if(GameManager.currentPlayer == 2)
@@ -65,10 +72,14 @@ public class RaceFinish : MonoBehaviour
             FinishCam2.SetActive (false);
             MyCar2.SetActive (true);
             FinishCam2.SetActive (true);
+            // rFL.EndingLoadScene();
             FinishMusic.Play();
+            PauseMenu.SetActive(true);
         }
         
         // LevelMusic.SetActive (false);
         // ViewModes.SetActive (false);
     }
+
+ 
 }

@@ -35,8 +35,23 @@ public class CarController : MonoBehaviour
     private float currentbrakeForce;
     private bool isBraking;
     private bool isShifting;
+
+    // Gameplay speed up
+    public bool isBoosted = false;
+    private float boostTimer = 0;
+    public float boostTime = 0;
+
+    // Gameplay slow down
+    public bool isSlowed = false;
+    private float slowTimer = 0;
+    public float slowTime = 0;
+
+    // Gameplay stop
+    public bool isStopped = false;
+    private float stopTimer = 0;
+    public float stopTime = 0;
    
-    [SerializeField] private float topSpeed;
+    [SerializeField] private  float topSpeed;
     [SerializeField] private float maxMotorForce;
     [SerializeField] private float motorForce;
     [SerializeField] private float brakeForce;
@@ -60,7 +75,45 @@ public class CarController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+        // Gameplay speed up
+        if(isBoosted == true){
+            RB.velocity =  RB.velocity + RB.velocity*0.001f;
+            boostTimer += Time.deltaTime;
+            if(boostTimer >= boostTime){
+                // topSpeed = 200;
+                // motorForce = 1;
+                // maxMotorForce = 2000;
+                isBoosted = false;
+            }
+        }
+        // Gameplay slow down
+        if(isSlowed == true){
+            RB.velocity =  RB.velocity - RB.velocity*0.01f;
+            // RB.angularVelocity *= 0.4f;
+            slowTimer += Time.deltaTime;
+            if(slowTimer >= slowTime){
+                // topSpeed = 200;
+                // motorForce = 1;
+                // maxMotorForce = 2000;
+                // brakeForce = 0;
+                // currentbrakeForce = 0;
+                isSlowed = false;
+            }
+        }
+        // Gameplay stop
+        if(isStopped == true){
+            RB.velocity = Vector3.zero;
+            // RB.angularVelocity = Vector3.zero;
+            stopTimer += Time.deltaTime;
+            if(stopTimer >= stopTime){
+                // topSpeed = 200;
+                // motorForce = 1;
+                // maxMotorForce = 2000;
+                // currentbrakeForce = 0;
+                // brakeForce = 0;
+                isStopped = false;
+            }
+        }
         if(speedMPH<topSpeed-80){
             handleMotorForce(1f);
         }
