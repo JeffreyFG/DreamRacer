@@ -11,7 +11,7 @@ package networking.request;
         import utility.Log;
 
 public class RequestInteract extends GameRequest {
-    private String x,y,z;
+    private String x,y,z, rot;
     // Responses
     private ResponseInteract responseInteract;
 
@@ -24,6 +24,7 @@ public class RequestInteract extends GameRequest {
         x = DataReader.readString(dataInput);
         y = DataReader.readString(dataInput);
         z = DataReader.readString(dataInput);
+        rot = DataReader.readString(dataInput);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class RequestInteract extends GameRequest {
         Player player = client.getPlayer();
 
         responseInteract.setPlayer(player);
-        responseInteract.setData(x,y,z);
+        responseInteract.setData(x,y,z,rot);
         NetworkManager.addResponseForAllOnlinePlayers(player.getID(), responseInteract);
     }
 }

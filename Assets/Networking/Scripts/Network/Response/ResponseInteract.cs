@@ -8,6 +8,7 @@ public class ResponseInteractEventArgs : ExtendedEventArgs
 	public string x { get; set; } // X location
 	public string y { get; set; } // y location
 	public string z { get; set; } // z location
+	public string rot { get; set; } // z location
 
 	public ResponseInteractEventArgs()
 	{
@@ -21,6 +22,7 @@ public class ResponseInteract : NetworkResponse
 	private string x;
 	private string y;
 	private string z;
+	private string rot;
 
 	public ResponseInteract()
 	{
@@ -32,6 +34,7 @@ public class ResponseInteract : NetworkResponse
 		x = DataReader.ReadString(dataStream);
 		y = DataReader.ReadString(dataStream);
 		z = DataReader.ReadString(dataStream);
+		rot = DataReader.ReadString(dataStream);
 	}
 
 	public override ExtendedEventArgs process()
@@ -41,7 +44,8 @@ public class ResponseInteract : NetworkResponse
 			user_id = user_id,
 			x = x,
 			y = y,
-			z =  z
+			z =  z,
+			rot = rot
 		};
 
 		return args;

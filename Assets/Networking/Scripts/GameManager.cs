@@ -39,19 +39,11 @@ public class GameManager : MonoBehaviour
 	// Select vehicle 1 body options start
 	public GameObject Car1RedBody;
     public GameObject Car1BlueBody;
-	public GameObject Car1OrangeBody;
-	public GameObject Car1GreenBody;
-	public GameObject Car1YellowBody;
-	public GameObject Car1WhiteBody;
     public int CarImport = 2; //Default blue car
 
 	// Select vehicle 2 body options start
 	public GameObject Car2RedBody;
     public GameObject Car2BlueBody;
-	public GameObject Car2OrangeBody;
-	public GameObject Car2GreenBody;
-	public GameObject Car2YellowBody;
-	public GameObject Car2WhiteBody;
 	public AudioSource LevelMusic;
 	
 	private bool ready = false;
@@ -263,57 +255,12 @@ public class GameManager : MonoBehaviour
         {
             Car1RedBody.SetActive(true);
 			Car1BlueBody.SetActive(false);
-			Car1OrangeBody.SetActive(false);
-			Car1GreenBody.SetActive(false);
-			Car1YellowBody.SetActive(false);
-			Car1WhiteBody.SetActive(false);
         }
         if (CarImport == 2)
         {
             Car1BlueBody.SetActive(true);
 			Car1RedBody.SetActive(false);
-			Car1OrangeBody.SetActive(false);
-			Car1GreenBody.SetActive(false);
-			Car1YellowBody.SetActive(false);
-			Car1WhiteBody.SetActive(false);
         }
-		if (CarImport == 3)
-        {
-            Car1BlueBody.SetActive(false);
-			Car1RedBody.SetActive(false);
-			Car1OrangeBody.SetActive(true);
-			Car1GreenBody.SetActive(false);
-			Car1YellowBody.SetActive(false);
-			Car1WhiteBody.SetActive(false);
-        }
-		if (CarImport == 4)
-        {
-            Car1BlueBody.SetActive(false);
-			Car1RedBody.SetActive(false);
-			Car1OrangeBody.SetActive(false);
-			Car1GreenBody.SetActive(true);
-			Car1YellowBody.SetActive(false);
-			Car1WhiteBody.SetActive(false);
-        }
-		if (CarImport == 5)
-        {
-            Car1BlueBody.SetActive(false);
-			Car1RedBody.SetActive(false);
-			Car1OrangeBody.SetActive(false);
-			Car1GreenBody.SetActive(false);
-			Car1YellowBody.SetActive(true);
-			Car1WhiteBody.SetActive(false);
-        }
-		if (CarImport == 6)
-        {
-            Car1BlueBody.SetActive(false);
-			Car1RedBody.SetActive(false);
-			Car1OrangeBody.SetActive(false);
-			Car1GreenBody.SetActive(false);
-			Car1YellowBody.SetActive(false);
-			Car1WhiteBody.SetActive(true);
-        }
-
 		
 
 		yield return new WaitForSeconds (0.5f);
@@ -350,57 +297,12 @@ public class GameManager : MonoBehaviour
         {
             Car2RedBody.SetActive(true);
 			Car2BlueBody.SetActive(false);
-			Car2OrangeBody.SetActive(false);
-			Car2GreenBody.SetActive(false);
-			Car2YellowBody.SetActive(false);
-			Car2WhiteBody.SetActive(false);
         }
         if (CarImport == 2)
         {
             Car2BlueBody.SetActive(true);
 			Car2RedBody.SetActive(false);
-			Car2OrangeBody.SetActive(false);
-			Car2GreenBody.SetActive(false);
-			Car2YellowBody.SetActive(false);
-			Car2WhiteBody.SetActive(false);
         }
-		if (CarImport == 3)
-        {
-            Car2BlueBody.SetActive(false);
-			Car2RedBody.SetActive(false);
-			Car2OrangeBody.SetActive(true);
-			Car2GreenBody.SetActive(false);
-			Car2YellowBody.SetActive(false);
-			Car2WhiteBody.SetActive(false);
-        }
-		if (CarImport == 4)
-        {
-            Car2BlueBody.SetActive(false);
-			Car2RedBody.SetActive(false);
-			Car2OrangeBody.SetActive(false);
-			Car2GreenBody.SetActive(true);
-			Car2YellowBody.SetActive(false);
-			Car2WhiteBody.SetActive(false);
-        }
-		if (CarImport == 5)
-        {
-            Car2BlueBody.SetActive(false);
-			Car2RedBody.SetActive(false);
-			Car2OrangeBody.SetActive(false);
-			Car2GreenBody.SetActive(false);
-			Car2YellowBody.SetActive(true);
-			Car2WhiteBody.SetActive(false);
-        }
-		if (CarImport == 6)
-        {
-            Car2BlueBody.SetActive(false);
-			Car2RedBody.SetActive(false);
-			Car2OrangeBody.SetActive(false);
-			Car2GreenBody.SetActive(false);
-			Car2YellowBody.SetActive(false);
-			Car2WhiteBody.SetActive(true);
-        }
-
 		yield return new WaitForSeconds (0.5f);
 		CountDown.GetComponent<Text> ().text = "3";
 		GetReady.Play ();
@@ -457,7 +359,7 @@ public class GameManager : MonoBehaviour
 
 	public void StartInteraction()
 	{	
-		networkManager.SendInteractRequest(car.transform.position);
+		networkManager.SendInteractRequest(car.transform.position, car.transform.rotation.y);
 	}
 
 	public void CreateItem(GameObject item)
@@ -511,14 +413,17 @@ public class GameManager : MonoBehaviour
 	{
 		ResponseInteractEventArgs args = eventArgs as ResponseInteractEventArgs;
 		Vector3 target = new Vector3(float.Parse(args.x), float.Parse(args.y), float.Parse(args.z));
+		float rot = float.Parse(args.rot);
 		if(args.user_id != currentPlayer && args.user_id == 1){
 			car1.transform.position = Vector3.Lerp(car1.transform.position, target, Time.deltaTime * movementTime);
+			car1.transform.rotation = new Quaternion(car1.transform.rotation.x, rot, car1.transform.rotation.z, car1.transform.rotation.w);
 		}
 		if(args.user_id != currentPlayer && args.user_id == 2){
 			car2.transform.position = Vector3.Lerp(car2.transform.position, target, Time.deltaTime * movementTime);
+			car2.transform.rotation = new Quaternion(car2.transform.rotation.x, rot, car2.transform.rotation.z, car2.transform.rotation.w);
 		}
 
-		Debug.Log("x" + args.x + "y" + args.y + "z" + args.z);
+		Debug.Log("x" + args.x + "y" + args.y + "z" + args.z + "rot" + args.rot);
 	}
 
 	public void OnResponseCompletedTime(ExtendedEventArgs eventArgs)

@@ -51,6 +51,7 @@ public class GameClient implements Runnable {
     public GameClient(String session_id, Socket clientSocket) throws IOException {
         this.session_id = session_id;
         this.clientSocket = clientSocket;
+        this.clientSocket.setTcpNoDelay(true);
         updates = new LinkedList<GameResponse>();
         inputStream = clientSocket.getInputStream();
         outputStream = clientSocket.getOutputStream();
@@ -168,6 +169,7 @@ public class GameClient implements Runnable {
 
     public void send(GameResponse response) throws IOException {
         outputStream.write(response.constructResponseInBytes());
+        outputStream.flush();
     }
 
     /**
