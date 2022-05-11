@@ -16,7 +16,7 @@ public class ReloadOnTrack : MonoBehaviour
         string trgt = "Track"; // Track of target
         if(Input.GetKeyDown("t")){
             if (GameManager.currentPlayer == 1){
-                Vector3 position = transform.position;
+                Vector3 position = car1.transform.position;
                 GameObject TrackItem = GameObject.FindGameObjectsWithTag(trgt)
                     .OrderBy(o => (o.transform.position - position).sqrMagnitude)
                     .FirstOrDefault();
@@ -25,7 +25,7 @@ public class ReloadOnTrack : MonoBehaviour
                 car1.transform.position = new Vector3(TrackItem.transform.position.x - 6.7f , TrackItem.transform.position.y + 11.844913f, TrackItem.transform.position.z);
             }
             if (GameManager.currentPlayer == 2){
-                Vector3 position = transform.position;
+                Vector3 position = car2.transform.position;
                 GameObject TrackItem = GameObject.FindGameObjectsWithTag(trgt)
                     .OrderBy(o => (o.transform.position - position).sqrMagnitude)
                     .FirstOrDefault();
