@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	public GameObject controls1;
 	public GameObject car2;
 	
+	public bool singleplayer = true;
 
 	public GameObject controls2;
 
@@ -70,18 +71,24 @@ public class GameManager : MonoBehaviour
 	public GameObject LoserDisplay;
 	void Start()
 	{
-		// StartCoroutine (CountStart ());
+		if(!singleplayer)
+		{
+			//StartCoroutine (CountStart ());
+		}
 		DontDestroyOnLoad(gameObject);
-		
-		MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
+		if(!singleplayer)
+		{
+			MessageQueue msgQueue = networkManager.GetComponent<MessageQueue>();
 
-		//Here's where the networking start
-		msgQueue.AddCallback(Constants.SMSG_ITEM, OnResponseItem);
-		msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
-		msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
-		msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
-		msgQueue.AddCallback(Constants.SMSG_FINISHED, OnResponseHasFinished);
-		msgQueue.AddCallback(Constants.SMSG_TIME, OnResponseCompletedTime);
+		// //=Here's where the networking start
+			msgQueue.AddCallback(Constants.SMSG_ITEM, OnResponseItem);
+			msgQueue.AddCallback(Constants.SMSG_INTERACT, OnResponseInteract);
+			msgQueue.AddCallback(Constants.SMSG_JOIN, OnResponseJoin);
+			msgQueue.AddCallback(Constants.SMSG_READY, OnResponseReady);
+			msgQueue.AddCallback(Constants.SMSG_FINISHED, OnResponseHasFinished);
+			msgQueue.AddCallback(Constants.SMSG_TIME, OnResponseCompletedTime);
+
+		}
 	}
 
 	public void FinishGame() 
@@ -201,34 +208,46 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		if (ready && opReady)
+		if (ready && opReady) 
 		{
 			if (currentPlayer == 1){
 				car = car1;
 				StartCoroutine (CountStart1 ());	
-				camera2.SetActive (false);camera1.SetActive (true);
+				camera2.SetActive (false);
+				camera1.SetActive (true);
 			}
 			else{
 				car = car2;
 				StartCoroutine (CountStart2 ());	
-				camera2.SetActive (true);camera1.SetActive (false);
+				camera2.SetActive (true);
+				camera1.SetActive (false);
 			}
 		}
 	}
 
 	public void StartGame(){
-		bool connected = networkManager.SendJoinRequest();
-		if(connected)
-		{
-			print("sending ready request");
-			networkManager.SendReadyRequest();
-			print("sent ready request");
+		if (singleplayer == false){
+		
+			bool connected = networkManager.SendJoinRequest();
+			if(connected)
+			{
+				print("sending ready request");
+				networkManager.SendReadyRequest();
+				print("sent ready request");
+			}
+			
+			if (!connected)
+			{
+				print("failed to connect");		
+			}
+		}	
+		else{
+			car = car1;
+			StartCoroutine (CountStart1 ());	
+			camera2.SetActive (false);
+			camera1.SetActive (true);
 		}
 		
-		if (!connected)
-		{
-			print("failed to connect");		
-		}
 		ReadyButton.SetActive(false);
 	}
 
