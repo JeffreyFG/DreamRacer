@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System.Timers;
+using UnityEngine.UI;
 using System.Threading.Tasks;
 
     [System.Serializable] public struct EngineSpecs {
@@ -16,7 +17,8 @@ using System.Threading.Tasks;
 }
 public class CarController : MonoBehaviour
 {
-
+    public Text rpmText;
+    public Text mphText;
 
     public GameManager manager;
   
@@ -158,8 +160,16 @@ private void handleMotorForce(float multiplier){
     }
 }
 private void HandleEngine(){
-     //MAKE SURE the number in GEARRATIO[number] is equal to the number of elements in UNITY EDITOR OTHERWISE GEARBOX WONT WORK!!!!!! for example gearRatio[5], editor must have elements 0-5!!!!
-if(currentRPM<EngineSpecs.idle){
+        //MAKE SURE the number in GEARRATIO[number] is equal to the number of elements in UNITY EDITOR OTHERWISE GEARBOX WONT WORK!!!!!! for example gearRatio[5], editor must have elements 0-5!!!!
+
+
+        rpmText.text = currentRPM.ToString();
+        mphText.text = speedMPH.ToString();
+
+
+
+
+        if (currentRPM<EngineSpecs.idle){
     currentRPM=EngineSpecs.idle;
 }else{
 if(currentRPM<EngineSpecs.redline){
