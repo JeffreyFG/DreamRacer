@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 	
 	public bool singleplayer = true;
 
+	public static bool isSinglePlayer;
 	public GameObject controls2;
 
 	public GameObject items1;
@@ -73,6 +74,12 @@ public class GameManager : MonoBehaviour
 	{
 		if(!singleplayer)
 		{
+			isSinglePlayer = false;
+			//StartCoroutine (CountStart ());
+		}
+		if(singleplayer)
+		{
+			isSinglePlayer = true;
 			//StartCoroutine (CountStart ());
 		}
 		DontDestroyOnLoad(gameObject);
