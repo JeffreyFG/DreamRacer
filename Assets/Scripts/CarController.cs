@@ -145,6 +145,7 @@ public class CarController : MonoBehaviour
         
         
 
+
     }
 
     private void sendPos(){
@@ -175,7 +176,7 @@ private void HandleEngine(){
 
 
 
-        if (currentRPM<EngineSpecs.idle){
+        if (currentRPM<EngineSpecs.idle &&Input.GetKeyDown("t")){
     currentRPM=EngineSpecs.idle;
 }else{
 if(currentRPM<EngineSpecs.redline){
@@ -184,10 +185,10 @@ if(currentRPM<EngineSpecs.redline){
     }
 if(currentRPM>=EngineSpecs.redline){
     currentGear++;
-    currentRPM=1600;
+    currentRPM=1800;
 }
 
-if(currentRPM<=EngineSpecs.idle&&currentGear>1){
+if(currentRPM<=EngineSpecs.idle+200&&currentGear>1){
     currentGear--;
 }
         //Debug.Log(currentRPM+" RPM");
