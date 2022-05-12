@@ -19,6 +19,9 @@ public class CarController : MonoBehaviour
 {
     public Text rpmText;
     public Text mphText;
+    public Text gearText;
+
+    public AudioSource engineSound;
 
     public GameManager manager;
   
@@ -162,9 +165,12 @@ private void handleMotorForce(float multiplier){
 private void HandleEngine(){
         //MAKE SURE the number in GEARRATIO[number] is equal to the number of elements in UNITY EDITOR OTHERWISE GEARBOX WONT WORK!!!!!! for example gearRatio[5], editor must have elements 0-5!!!!
 
+     
+        engineSound.pitch = currentRPM / 1000;
 
         rpmText.text = currentRPM.ToString();
         mphText.text = speedMPH.ToString();
+        gearText.text = currentGear.ToString();
 
 
 
@@ -173,7 +179,7 @@ private void HandleEngine(){
     currentRPM=EngineSpecs.idle;
 }else{
 if(currentRPM<EngineSpecs.redline){
-        currentRPM=(RB.velocity.magnitude*600/(0.29f*2*Mathf.PI))*gearRatio[5]*gearRatio[currentGear];
+        currentRPM=(RB.velocity.magnitude*600/(0.29f*2*Mathf.PI))*gearRatio[5]*gearRatio[currentGear]+1500;
        speedMPH=RB.velocity.magnitude*3.6f;
     }
 if(currentRPM>=EngineSpecs.redline){
