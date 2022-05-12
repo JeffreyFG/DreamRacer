@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
 	public GameObject Car1WhiteBody;
     public int CarImport = 2; //Default blue car
 
+	public int NumberOfPlayers = 2;
+
 	// Select vehicle 2 body options start
 	public GameObject Car2RedBody;
     public GameObject Car2BlueBody;
@@ -72,6 +74,12 @@ public class GameManager : MonoBehaviour
 	public GameObject LoserDisplay;
 	void Start()
 	{
+		NumberOfPlayers = SingleOrMulti.PlayerSingleOrMulti;
+		if(NumberOfPlayers == 1)
+		{
+			singleplayer = true;
+		}
+		else singleplayer = false;
 		if(!singleplayer)
 		{
 			isSinglePlayer = false;
@@ -284,6 +292,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	IEnumerator CountStart1 () {
+		
 		CarImport = GlobalCar.CarType;
         if (CarImport == 1)
         {
