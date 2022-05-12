@@ -7,6 +7,9 @@ TagManager:
   - c1
   - c2
   - c3
+  - Fire
+  - Track
+  - Reload
   layers:
   - Default
   - TransparentFX
