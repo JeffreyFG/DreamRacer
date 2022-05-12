@@ -407,7 +407,7 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator CountStart2 () {
 		CarImport = GlobalCar.CarType;
-		if(Constants.OP_ID == 1){
+		if(Constants.USER_ID == 1){
 			CarImport = opponent;
 			print("opponent car" + CarImport);
 		}
