@@ -9,6 +9,7 @@ import core.NetworkManager;
 import model.Player;
 import networking.response.ResponseJoin;
 import networking.response.ResponseName;
+import utility.DataReader;
 import utility.Log;
 
 /**
@@ -19,6 +20,7 @@ import utility.Log;
 public class RequestJoin extends GameRequest {
     // Data
     private Player player;
+    private int car;
 
     // Responses
     private ResponseJoin responseJoin;
@@ -38,6 +40,8 @@ public class RequestJoin extends GameRequest {
         int id = gs.getID();
         if(id != 0) {
             player = new Player(id, "Player " + id);
+            car = DataReader.readInt(dataInput);
+            player.setCar(car);
             player.setID(id);
             gs.setActivePlayer(player);
 
@@ -47,7 +51,7 @@ public class RequestJoin extends GameRequest {
             // Set response information
             responseJoin.setStatus((short) 0); // Login is a success
             responseJoin.setPlayer(player);
-            Log.printf("User '%s' has successfully logged in.", player.getName());
+            Log.printf("User '%s' has successfully logged in. car: %s", player.getName(), player.getCar());
 
             ResponseName responseName = new ResponseName();
             responseName.setPlayer(player);

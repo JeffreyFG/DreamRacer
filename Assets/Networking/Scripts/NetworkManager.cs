@@ -33,20 +33,20 @@ public class NetworkManager : MonoBehaviour
 			cManager.setupSocket();
 
 			StartCoroutine(RequestHeartbeat(0.1f));
-			Player player1 = new Player(1, "player 1", new Color(0.9f, 0.1f, 0.1f), true);
-			Player player2 = new Player(2, "player 2", new Color(0.2f, 0.2f, 1.0f), true);
+			Player player1 = new Player(1, "player 1", new Color(0.9f, 0.1f, 0.1f), true, 1);
+			Player player2 = new Player(2, "player 2", new Color(0.2f, 0.2f, 1.0f), true, 2);
 			gameManager.Init(player1, player2);
 		}
 	}
 
 
 	
-	public bool SendJoinRequest()
+	public bool SendJoinRequest(int car)
 	{
 		if (cManager && cManager.IsConnected())
 		{
 			RequestJoin request = new RequestJoin();
-			request.send();
+			request.send(car);
 			cManager.send(request);
 			return true;
 		}

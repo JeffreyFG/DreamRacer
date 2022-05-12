@@ -36,6 +36,7 @@ public class ResponseJoin extends GameResponse {
                     packet.addInt32(p.getID());
                     packet.addString(p.getName());
                     packet.addBoolean(p.getReadyStatus());
+                    packet.addInt32(p.getCar());
                     otherPlayerExists = true;
                 }
             }

@@ -20,8 +20,8 @@ public class ResponseReady extends GameResponse {
     public byte[] constructResponseInBytes() {
         GamePacket packet = new GamePacket(responseCode);
         packet.addInt32(player.getID());
-
-        Log.printf("Player with id %d is ready", player.getID());
+        packet.addInt32(player.getCar());
+        Log.printf("Player with id %d is ready car %d", player.getID(),player.getCar());
         player.setReadyStatusOn(true);
         return packet.getBytes();
     }

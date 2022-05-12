@@ -15,6 +15,7 @@ public class Player {
     private GameClient client; // References GameClient instance
     private boolean hasFinished = false;
     private String completeTime;
+    private int car;
 
     public Player(int player_id) {
         this.player_id = player_id;
@@ -28,6 +29,10 @@ public class Player {
     public int getID() {
         return player_id;
     }
+
+    public int getCar(){ return car;}
+
+    public int setCar(int car){ return this.car = car;}
 
     public int setID(int player_id) {
         return this.player_id = player_id;

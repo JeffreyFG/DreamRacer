@@ -37,6 +37,7 @@ public class NetworkManager {
             Player player = client.getPlayer();
 
             if (player != null && client.getPlayer().getID() != player_id) {
+
                 client.addResponseForUpdate(response);
             }
         }

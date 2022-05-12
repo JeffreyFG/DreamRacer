@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 	public GameObject car1;
 	public GameObject controls1;
 	public GameObject car2;
+
+	private int opponent;
 	
 	public bool singleplayer = true;
 
@@ -45,7 +47,9 @@ public class GameManager : MonoBehaviour
 	public GameObject Car1GreenBody;
 	public GameObject Car1YellowBody;
 	public GameObject Car1WhiteBody;
-    public int CarImport = 2; //Default blue car
+
+
+	public int CarImport = 2; //Default blue car
 
 	public int NumberOfPlayers = 2;
 
@@ -74,6 +78,8 @@ public class GameManager : MonoBehaviour
 	public GameObject LoserDisplay;
 	void Start()
 	{
+		
+
 		NumberOfPlayers = SingleOrMulti.PlayerSingleOrMulti;
 		if(NumberOfPlayers == 1)
 		{
@@ -83,12 +89,14 @@ public class GameManager : MonoBehaviour
 		if(!singleplayer)
 		{
 			isSinglePlayer = false;
-			//StartCoroutine (CountStart ());
+			//StartCoroutine (CountStart1 ());
 		}
 		if(singleplayer)
 		{
 			isSinglePlayer = true;
-			//StartCoroutine (CountStart ());
+			Constants.USER_ID = 1;
+			StartCoroutine (CountStart1 ());
+		
 		}
 		DontDestroyOnLoad(gameObject);
 		if(!singleplayer)
@@ -201,16 +209,21 @@ public class GameManager : MonoBehaviour
 
 	public void OnResponseReady(ExtendedEventArgs eventArgs)
 	{	
-		ResponseReadyEventArgs args = eventArgs as ResponseReadyEventArgs;
+		ResponseReadyEventArgs args = eventArgs as ResponseReadyEventArgs;		
+		
 		if (Constants.USER_ID == -1) // Haven't joined, but got ready message
 		{
 			opReady = true;
+			opponent = args.car;
+			print(args+ "here");
 		}
 		else
 		{
 			if (args.user_id == Constants.OP_ID)
 			{
 				opReady = true;
+				opponent = args.car;
+				print(args + "HERE");
 			}
 			else if (args.user_id == Constants.USER_ID)
 			{
@@ -228,11 +241,14 @@ public class GameManager : MonoBehaviour
 			if (currentPlayer == 1){
 				car = car1;
 				StartCoroutine (CountStart1 ());	
+				StartCoroutine (CountStart2 ());	
 				camera2.SetActive (false);
 				camera1.SetActive (true);
+				
 			}
 			else{
 				car = car2;
+				StartCoroutine (CountStart1 ());	
 				StartCoroutine (CountStart2 ());	
 				camera2.SetActive (true);
 				camera1.SetActive (false);
@@ -243,7 +259,7 @@ public class GameManager : MonoBehaviour
 	public void StartGame(){
 		if (singleplayer == false){
 		
-			bool connected = networkManager.SendJoinRequest();
+			bool connected = networkManager.SendJoinRequest(GlobalCar.CarType);
 			if(connected)
 			{
 				print("sending ready request");
@@ -270,16 +286,20 @@ public class GameManager : MonoBehaviour
 	{
 		ResponseJoinEventArgs args = eventArgs as ResponseJoinEventArgs;
 		currentPlayer = args.user_id;
+		
+		
 		if (args.status == 0)
 		{
 			Constants.USER_ID = args.user_id;
 			Constants.OP_ID = 3 - args.user_id;
-		
+			print("opponent id = "+ Constants.OP_ID);
 			if (args.op_id > 0)
 			{
 				if (args.op_id == Constants.OP_ID)
 				{
 					opReady = args.op_ready;
+					opponent = args.car;
+					print(args);
 				}
 				else
 				{
@@ -292,8 +312,13 @@ public class GameManager : MonoBehaviour
 	}
 
 	IEnumerator CountStart1 () {
-		
 		CarImport = GlobalCar.CarType;
+
+		if(Constants.USER_ID == 2){
+			CarImport = opponent;
+			print("opponent car" + CarImport);
+		}
+		
         if (CarImport == 1)
         {
             Car1RedBody.SetActive(true);
@@ -350,118 +375,128 @@ public class GameManager : MonoBehaviour
         }
 
 		
-
-		yield return new WaitForSeconds (0.5f);
-		CountDown.GetComponent<Text> ().text = "3";
-		GetReady.Play ();
-		CountDown.SetActive (true);
-		yield return new WaitForSeconds (1);
-		CountDown.SetActive (false);
-		CountDown.GetComponent<Text> ().text = "2";
-		GetReady.Play ();
-		CountDown.SetActive (true);
-		yield return new WaitForSeconds (1);
-		CountDown.SetActive (false);
-		CountDown.GetComponent<Text> ().text = "1";
-		GetReady.Play ();
-		CountDown.SetActive (true);
-		yield return new WaitForSeconds (1);
-		CountDown.SetActive (false);
-		GoAudio.Play ();
-		LevelMusic.Play();
-		LapTimer.SetActive (true);
-		
-		car1.GetComponent<CarController>().enabled = true;
-		items1.GetComponent<createItem>().isEnabled = true;
-		car2.GetComponent<CarController>().enabled = false;
-		items2.GetComponent<createItem>().isEnabled = false;
-		controls2.SetActive(false);
-		controls1.SetActive(true);
+		if(Constants.USER_ID == 1){
+			yield return new WaitForSeconds (0.5f);
+			CountDown.GetComponent<Text> ().text = "3";
+			GetReady.Play ();
+			CountDown.SetActive (true);
+			yield return new WaitForSeconds (1);
+			CountDown.SetActive (false);
+			CountDown.GetComponent<Text> ().text = "2";
+			GetReady.Play ();
+			CountDown.SetActive (true);
+			yield return new WaitForSeconds (1);
+			CountDown.SetActive (false);
+			CountDown.GetComponent<Text> ().text = "1";
+			GetReady.Play ();
+			CountDown.SetActive (true);
+			yield return new WaitForSeconds (1);
+			CountDown.SetActive (false);
+			GoAudio.Play ();
+			LevelMusic.Play();
+			LapTimer.SetActive (true);
+			
+			car1.GetComponent<CarController>().enabled = true;
+			items1.GetComponent<createItem>().isEnabled = true;
+			car2.GetComponent<CarController>().enabled = false;
+			items2.GetComponent<createItem>().isEnabled = false;
+			controls2.SetActive(false);
+			controls1.SetActive(true);
+		}
 	}
 
 	IEnumerator CountStart2 () {
 		CarImport = GlobalCar.CarType;
-        if (CarImport == 1)
-        {
-            Car2RedBody.SetActive(true);
+		if(Constants.OP_ID == 1){
+			CarImport = opponent;
+			print("opponent car" + CarImport);
+		}
+	
+		if (CarImport == 1)
+		{
+			Car2RedBody.SetActive(true);
 			Car2BlueBody.SetActive(false);
 			Car2OrangeBody.SetActive(false);
 			Car2GreenBody.SetActive(false);
 			Car2YellowBody.SetActive(false);
 			Car2WhiteBody.SetActive(false);
-        }
-        if (CarImport == 2)
-        {
-            Car2BlueBody.SetActive(true);
+		}
+		if (CarImport == 2)
+		{
+			Car2BlueBody.SetActive(true);
 			Car2RedBody.SetActive(false);
 			Car2OrangeBody.SetActive(false);
 			Car2GreenBody.SetActive(false);
 			Car2YellowBody.SetActive(false);
 			Car2WhiteBody.SetActive(false);
-        }
+		}
 		if (CarImport == 3)
-        {
-            Car2BlueBody.SetActive(false);
+		{
+			Car2BlueBody.SetActive(false);
 			Car2RedBody.SetActive(false);
 			Car2OrangeBody.SetActive(true);
 			Car2GreenBody.SetActive(false);
 			Car2YellowBody.SetActive(false);
 			Car2WhiteBody.SetActive(false);
-        }
+		}
 		if (CarImport == 4)
-        {
-            Car2BlueBody.SetActive(false);
+		{
+			Car2BlueBody.SetActive(false);
 			Car2RedBody.SetActive(false);
 			Car2OrangeBody.SetActive(false);
 			Car2GreenBody.SetActive(true);
 			Car2YellowBody.SetActive(false);
 			Car2WhiteBody.SetActive(false);
-        }
+		}
 		if (CarImport == 5)
-        {
-            Car2BlueBody.SetActive(false);
+		{
+			Car2BlueBody.SetActive(false);
 			Car2RedBody.SetActive(false);
 			Car2OrangeBody.SetActive(false);
 			Car2GreenBody.SetActive(false);
 			Car2YellowBody.SetActive(true);
 			Car2WhiteBody.SetActive(false);
-        }
+		}
 		if (CarImport == 6)
-        {
-            Car2BlueBody.SetActive(false);
+		{
+			Car2BlueBody.SetActive(false);
 			Car2RedBody.SetActive(false);
 			Car2OrangeBody.SetActive(false);
 			Car2GreenBody.SetActive(false);
 			Car2YellowBody.SetActive(false);
 			Car2WhiteBody.SetActive(true);
-        }
+		}
 
-		yield return new WaitForSeconds (0.5f);
-		CountDown.GetComponent<Text> ().text = "3";
-		GetReady.Play ();
-		CountDown.SetActive (true);
-		yield return new WaitForSeconds (1);
-		CountDown.SetActive (false);
-		CountDown.GetComponent<Text> ().text = "2";
-		GetReady.Play ();
-		CountDown.SetActive (true);
-		yield return new WaitForSeconds (1);
-		CountDown.SetActive (false);
-		CountDown.GetComponent<Text> ().text = "1";
-		GetReady.Play ();
-		CountDown.SetActive (true);
-		yield return new WaitForSeconds (1);
-		CountDown.SetActive (false);
-		GoAudio.Play ();
-		LevelMusic.Play();
-		LapTimer.SetActive (true);
+		if(Constants.USER_ID == 2){
+			yield return new WaitForSeconds (0.5f);
+			CountDown.GetComponent<Text> ().text = "3";
+			GetReady.Play ();
+			CountDown.SetActive (true);
+			yield return new WaitForSeconds (1);
+			CountDown.SetActive (false);
+			CountDown.GetComponent<Text> ().text = "2";
+			GetReady.Play ();
+			CountDown.SetActive (true);
+			yield return new WaitForSeconds (1);
+			CountDown.SetActive (false);
+			CountDown.GetComponent<Text> ().text = "1";
+			GetReady.Play ();
+			CountDown.SetActive (true);
+			yield return new WaitForSeconds (1);
+			CountDown.SetActive (false);
+			GoAudio.Play ();
+			LevelMusic.Play();
+			LapTimer.SetActive (true);
 
-		car2.GetComponent<CarController>().enabled = true;
-		items2.GetComponent<createItem>().isEnabled = true;
-		car1.GetComponent<CarController>().enabled = false;
-		items1.GetComponent<createItem>().isEnabled = false;
-		controls1.SetActive(false);
-		controls2.SetActive(true);	
+			car2.GetComponent<CarController>().enabled = true;
+			items2.GetComponent<createItem>().isEnabled = true;
+			car1.GetComponent<CarController>().enabled = false;
+			items1.GetComponent<createItem>().isEnabled = false;
+			controls1.SetActive(false);
+			controls2.SetActive(true);	
+		}
+		
+		
 	}
 
 	public Player GetCurrentPlayer()
@@ -492,7 +527,9 @@ public class GameManager : MonoBehaviour
 
 	public void StartInteraction()
 	{	
-		networkManager.SendInteractRequest(car.transform.position, car.transform.rotation.y);
+		if(!singleplayer){
+			networkManager.SendInteractRequest(car.transform.position, car.transform.rotation.y);
+		}
 	}
 
 	public void CreateItem(GameObject item)

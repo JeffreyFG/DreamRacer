@@ -5,7 +5,7 @@ using UnityEngine;
 public class GlobalCar : MonoBehaviour
 {
     public static int CarType = 2; // 1 = Red, 2 = Blue Default blue
-
+    public static int opponent = 0; 
     public void RedCar () 
     {
         CarType = 1;

@@ -28,7 +28,7 @@ public class ResponseInteract extends GameResponse {
         packet.addString(z);
         packet.addString(rot);
 
-        Log.printf("Player with id %d has location %s %s %s", player.getID(), x, y, z, rot);
+
 
         return packet.getBytes();
     }

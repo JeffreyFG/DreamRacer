@@ -19,6 +19,7 @@ public class ConnectionManager : MonoBehaviour
 	}
 
 	public void setupSocket() {
+		
 		if (socketReady)
 		{
 			Debug.Log("Already Connected");
@@ -35,6 +36,7 @@ public class ConnectionManager : MonoBehaviour
 		{
 			Debug.Log("Socket error: " + e);
 		}
+	
 	}
 
 	public void readSocket()

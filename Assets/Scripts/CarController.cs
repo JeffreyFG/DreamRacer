@@ -55,6 +55,7 @@ public class CarController : MonoBehaviour
     public bool isStopped = false;
     private float stopTimer = 0;
     public float stopTime = 0;
+    public float Try = 0;
    
     [SerializeField] private  float topSpeed;
     [SerializeField] private float maxMotorForce;
@@ -142,10 +143,16 @@ public class CarController : MonoBehaviour
        // GearShift();
      
         HandleEngine();
-        
-        
+    
+    }
 
+    private void Update(){
+        GetComponent<Rigidbody>().centerOfMass = new Vector3(0, Try, 0);
 
+        if (Input.GetKeyUp(KeyCode.RightAlt))
+        {
+            transform.Rotate(0,0,180);
+        } 
     }
 
     private void sendPos(){
