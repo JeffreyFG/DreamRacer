@@ -23,8 +23,10 @@ public class ReloadOnTrack : MonoBehaviour
                 car1.GetComponent<CarController>().isStopped = true;
                 car1.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                 car1.transform.position = new Vector3(TrackItem.transform.position.x - 6.7f , TrackItem.transform.position.y + 11.844913f, TrackItem.transform.position.z);
+                Destroy(TrackItem);
+
             }
-            if (GameManager.currentPlayer == 1){
+            if (GameManager.currentPlayer == 1 && GameManager.isSinglePlayer == false){
                 Vector3 position = car1.transform.position;
                 GameObject TrackItem = GameObject.FindGameObjectsWithTag(trgt)
                     .OrderBy(o => (o.transform.position - position).sqrMagnitude)
@@ -32,6 +34,7 @@ public class ReloadOnTrack : MonoBehaviour
                 car1.GetComponent<CarController>().isStopped = true;
                 car1.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                 car1.transform.position = new Vector3(TrackItem.transform.position.x - 6.7f , TrackItem.transform.position.y + 11.844913f, TrackItem.transform.position.z);
+                Destroy(TrackItem);
             }
             if (GameManager.currentPlayer == 2){
                 Vector3 position = car2.transform.position;
@@ -41,6 +44,7 @@ public class ReloadOnTrack : MonoBehaviour
                 car2.GetComponent<CarController>().isStopped = true;
                 car2.transform.rotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
                 car2.transform.position = new Vector3(TrackItem.transform.position.x - 13.9f , TrackItem.transform.position.y + 11.844913f, TrackItem.transform.position.z);
+                Destroy(TrackItem);
             }
         }
      }
